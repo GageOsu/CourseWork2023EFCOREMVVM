@@ -22,8 +22,8 @@ namespace CourseWork.ViewModels
         private readonly IWorkUser _workUser;
         public TabItem SelectedTabItem { get; set; }
 
-        private Employee _selectedEmployees;
-        public Employee SelectedEmployees
+        private static Employee _selectedEmployees;
+        public static Employee SelectedEmployees
         {
             get
             {
@@ -45,6 +45,17 @@ namespace CourseWork.ViewModels
             _workUser.OpenCreateWindow();
         }
 
+        private LambdaCommand? _openUpdateEmployeeCommand;
+
+        public ICommand OpenUpdateEmployeeCommand => _openUpdateEmployeeCommand ??= new(_onOpenCreateWindowCommandExecuted);
+
+        private void _onOpenUpdateEmployeeCommand()
+        {
+            _workUser.OpenUpdateEmployeeWindow();
+        }
+
+
+
         private LambdaCommand? _deleteItem;
 
         public ICommand DeleteItem => _deleteItem ??= new(_deleteItemCommandExecuted);
@@ -64,7 +75,7 @@ namespace CourseWork.ViewModels
         {
             if (SelectedTabItem.Name == "EmployeesTab" && SelectedEmployees != null)
             {
-
+                _onOpenUpdateEmployeeCommand();
             }
         }
 

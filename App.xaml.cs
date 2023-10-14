@@ -28,6 +28,7 @@ namespace CourseWork
 
             services.AddSingleton<MainWindowViewModel>();
             services.AddTransient<CreateEmployeeViewModel>();
+            services.AddTransient<UpdateEmployeeViewModel>();
 
             services.AddSingleton<IWorkUser, WorkUser>();
 
@@ -44,6 +45,13 @@ namespace CourseWork
                 {
                     var model = s.GetRequiredService<CreateEmployeeViewModel>();
                     var window = new CreateEmployeeWindows { DataContext = model };
+                    return window;
+                });
+            services.AddTransient(
+                s =>
+                {
+                    var model = s.GetRequiredService<UpdateEmployeeViewModel>();
+                    var window = new UpdateEmployeeWindow { DataContext = model };
                     return window;
                 });
 

@@ -103,5 +103,8 @@ namespace CourseWork.ViewModels.CRUDViewModel.Employees
             EmployeeSelectedItem = MainWindowViewModel.SelectedEmployees;
             Positions = new ObservableCollection<Position>(CRUDPositions.ReadPositions());
         }
+
+
+
     }
 }

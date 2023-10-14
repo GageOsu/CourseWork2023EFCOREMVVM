@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CourseWork.Views.CRUDView.Employee"
-        xmlns:vm="clr-namespace:CourseWork.ViewModels"
+        xmlns:vm="clr-namespace:CourseWork.ViewModels.CRUDViewModel.Employees"
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance vm:CreateEmployeeViewModel, IsDesignTimeCreatable=True}"
         Title="{Binding Title}" Height="300" Width="300">

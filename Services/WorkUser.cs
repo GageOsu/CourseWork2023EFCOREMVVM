@@ -47,5 +47,22 @@ namespace CourseWork.Services
             _createEmployeeWindows = window;
             window.Show();
         }
+
+
+        private UpdateEmployeeWindow? updateEmployeeWindow;
+        public void OpenUpdateEmployeeWindow()
+        {
+            if (updateEmployeeWindow is { } window)
+            {
+                window.Show();
+                return;
+            }
+
+            window = _services.GetRequiredService<UpdateEmployeeWindow>();
+            window.Closed += (_, _) => updateEmployeeWindow = null;
+
+            updateEmployeeWindow = window;
+            window.Show();
+        }
     }
 }

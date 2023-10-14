@@ -61,7 +61,7 @@ namespace CourseWork.Models.Data
             return result;
         }
 
-        public bool UpdateEmployee(Employee NewEmployee)
+        public static bool UpdateEmployee(Employee NewEmployee)
         {
             bool result = false;
             using (StomatologicClinicContext db = new StomatologicClinicContext())
