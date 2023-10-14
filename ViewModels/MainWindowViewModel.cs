@@ -17,7 +17,12 @@ namespace CourseWork.ViewModels
 {
     internal class MainWindowViewModel : TitleViewModel
     {
-        public ObservableCollection<Employee> Employees { get; set; }
+        private ObservableCollection<Employee> _employees;
+        public ObservableCollection<Employee> Employees 
+        {
+            get => _employees;
+            set => Set(ref _employees, value);
+        }
         CRUDEmployees CRUDEmployees = new CRUDEmployees();
         private readonly IWorkUser _workUser;
         public TabItem SelectedTabItem { get; set; }
@@ -65,6 +70,8 @@ namespace CourseWork.ViewModels
             if(SelectedTabItem.Name == "EmployeesTab" && SelectedEmployees != null)
             {
                 CRUDEmployees.DeleteEmployee(SelectedEmployees);
+                //var newEmployees = CRUDEmployees.ReadEmployes();
+                Employees = CRUDEmployees.ReadEmployes();
             }
         }
 
@@ -104,12 +111,13 @@ namespace CourseWork.ViewModels
         public MainWindowViewModel()
         {
             Title = "Главное окно";
+            Employees = new ObservableCollection<Employee>(CRUDEmployees.ReadEmployes());
         }
 
         public MainWindowViewModel(IWorkUser WorkUser) : this()
         {
             _workUser = WorkUser;
-            Employees = new ObservableCollection<Employee>(CRUDEmployees.ReadEmployes());
+            
         }
 
     }

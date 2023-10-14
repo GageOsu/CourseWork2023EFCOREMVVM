@@ -96,6 +96,7 @@ namespace CourseWork.ViewModels.CRUDViewModel.Employees
         public void _createEmployeesExecuted()
         {
             _CRUDEmployees.CreateEmployes(Surname, Name, Middlename, Position);
+            _CRUDEmployees.ReadEmployes();
         }
 
 
