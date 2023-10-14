@@ -1,5 +1,6 @@
 ﻿using CourseWork.Infrastructure.Commands;
 using CourseWork.Models;
+using CourseWork.Models.Data;
 using CourseWork.Models.Tables;
 using CourseWork.Services;
 using CourseWork.ViewModels.Base;
@@ -9,21 +10,29 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace CourseWork.ViewModels
 {
     internal class MainWindowViewModel : TitleViewModel
     {
+        public ObservableCollection<Employee> Employees { get; set; }
+        CRUDEmployees CRUDEmployees = new CRUDEmployees();
         private readonly IWorkUser _workUser;
-        public MainWindowViewModel() 
-        {
-            Title = "Главное окно";
-        }
+        public TabItem SelectedTabItem { get; set; }
 
-        public MainWindowViewModel(IWorkUser WorkUser) : this()
+        private Employee _selectedEmployees;
+        public Employee SelectedEmployees
         {
-            _workUser = WorkUser;
+            get
+            {
+                return _selectedEmployees;
+            }
+            set
+            {
+                _selectedEmployees = value;
+            }
         }
 
 
@@ -35,5 +44,50 @@ namespace CourseWork.ViewModels
         {
             _workUser.OpenCreateWindow();
         }
+
+        private LambdaCommand? _deleteItem;
+
+        public ICommand DeleteItem => _deleteItem ??= new(_deleteItemCommandExecuted);
+
+        public void _deleteItemCommandExecuted()
+        {
+            if(SelectedTabItem.Name == "EmployeesTab" && SelectedEmployees != null)
+            {
+                CRUDEmployees.DeleteEmployee(SelectedEmployees);
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        public MainWindowViewModel()
+        {
+            Title = "Главное окно";
+        }
+
+        public MainWindowViewModel(IWorkUser WorkUser) : this()
+        {
+            _workUser = WorkUser;
+            Employees = new ObservableCollection<Employee>(CRUDEmployees.ReadEmployes());
+        }
+
     }
 }

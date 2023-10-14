@@ -1,5 +1,6 @@
 ﻿using CourseWork.Services;
 using CourseWork.ViewModels;
+using CourseWork.ViewModels.CRUDViewModel.Employees;
 using CourseWork.Views.CRUDView.Employee;
 using Microsoft.Extensions.DependencyInjection;
 using System;

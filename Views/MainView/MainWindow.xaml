@@ -20,9 +20,9 @@
                 <MenuItem Header="Exit" ></MenuItem>
             </MenuItem>
         </Menu>
-        <TabControl Margin="0,19,0,0" SelectedItem="{Binding SelectetTabItem}">
+        <TabControl Margin="0,19,0,0" SelectedItem="{Binding SelectedTabItem}">
 
-            <TabItem Name="MedicalPersonalTab">
+            <TabItem Name="EmployeesTab">
                 <TabItem.Header>
                     <TextBlock Text="Медицинский персонал"/>
                 </TabItem.Header>
@@ -32,14 +32,14 @@
                         <MenuItem Header="Удалить" Command="{Binding DeleteItem}"/>
                     </ContextMenu>
                 </TabItem.ContextMenu>
-                <ListView x:Name="ViewAllMedicalPersonnels" ItemsSource="{Binding AllMedicalPersonnels}"
-                          SelectedItem="{Binding SelectedMedicalPersonnels}">
+                <ListView x:Name="Employees" ItemsSource="{Binding Employees}"
+                          SelectedItem="{Binding SelectedEmployees}">
                     <ListView.View>
                         <GridView>
-                            <GridViewColumn DisplayMemberBinding="{Binding Path=Surname}" Header="Фамилия"/>
-                            <GridViewColumn DisplayMemberBinding="{Binding Path=Name}" Header="Имя"/>
-                            <GridViewColumn DisplayMemberBinding="{Binding Path=MiddleName}" Header="Отчество"/>
-                            <GridViewColumn DisplayMemberBinding="{Binding Path=MedicalPersonnelsPosition.Position1}" Header="Должность"/>
+                            <GridViewColumn DisplayMemberBinding="{Binding Path=SurnameEmployee}" Header="Фамилия"/>
+                            <GridViewColumn DisplayMemberBinding="{Binding Path=NameEmployee}" Header="Имя"/>
+                            <GridViewColumn DisplayMemberBinding="{Binding Path= MiddleNameEmployee}" Header="Отчество"/>
+                            <GridViewColumn DisplayMemberBinding="{Binding Path= IdpositionNavigation.Position1}" Header="Должность"/>
                         </GridView>
                     </ListView.View>
                 </ListView>
