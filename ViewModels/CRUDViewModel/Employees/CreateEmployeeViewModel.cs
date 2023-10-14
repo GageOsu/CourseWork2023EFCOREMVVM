@@ -18,7 +18,7 @@ namespace CourseWork.ViewModels.CRUDViewModel.Employees
 
         private readonly IWorkUser _workUser;
 
-
+        MainWindowViewModel zxc = new MainWindowViewModel();
         private CRUDPositions _CRUDPositions = new CRUDPositions();
         private CRUDEmployees _CRUDEmployees = new CRUDEmployees();
         private string _surname;
@@ -96,7 +96,7 @@ namespace CourseWork.ViewModels.CRUDViewModel.Employees
         public void _createEmployeesExecuted()
         {
             _CRUDEmployees.CreateEmployes(Surname, Name, Middlename, Position);
-            _CRUDEmployees.ReadEmployes();
+            zxc.Employees = _CRUDEmployees.ReadEmployes();
         }
 
 

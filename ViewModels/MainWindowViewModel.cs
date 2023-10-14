@@ -17,23 +17,18 @@ namespace CourseWork.ViewModels
 {
     internal class MainWindowViewModel : TitleViewModel
     {
+        CRUDEmployees CRUDEmployees = new CRUDEmployees();
         private ObservableCollection<Employee> _employees;
         public ObservableCollection<Employee> Employees 
         {
             get => _employees;
             set => Set(ref _employees, value);
-        }
-        CRUDEmployees CRUDEmployees = new CRUDEmployees();
-        private readonly IWorkUser _workUser;
+        }   
         public TabItem SelectedTabItem { get; set; }
-
         private static Employee _selectedEmployees;
         public static Employee SelectedEmployees
         {
-            get
-            {
-                return _selectedEmployees;
-            }
+            get => _selectedEmployees;
             set
             {
                 _selectedEmployees = value;
@@ -41,28 +36,31 @@ namespace CourseWork.ViewModels
         }
 
 
+
+
+        #region Открытия окон 
+        #region Окна для Employees
+  
         private LambdaCommand? _openCreateWindowCommand;
-
         public ICommand OpenCreateWindowCommand => _openCreateWindowCommand ??= new(_onOpenCreateWindowCommandExecuted);
-
         private void _onOpenCreateWindowCommandExecuted()
         {
             _workUser.OpenCreateWindow();
         }
 
         private LambdaCommand? _openUpdateEmployeeCommand;
-
         public ICommand OpenUpdateEmployeeCommand => _openUpdateEmployeeCommand ??= new(_onOpenCreateWindowCommandExecuted);
-
         private void _onOpenUpdateEmployeeCommand()
         {
             _workUser.OpenUpdateEmployeeWindow();
         }
+        #endregion
+
+        #endregion
 
 
-
+        #region Удаление выбранной строчки
         private LambdaCommand? _deleteItem;
-
         public ICommand DeleteItem => _deleteItem ??= new(_deleteItemCommandExecuted);
 
         public void _deleteItemCommandExecuted()
@@ -70,11 +68,12 @@ namespace CourseWork.ViewModels
             if(SelectedTabItem.Name == "EmployeesTab" && SelectedEmployees != null)
             {
                 CRUDEmployees.DeleteEmployee(SelectedEmployees);
-                //var newEmployees = CRUDEmployees.ReadEmployes();
                 Employees = CRUDEmployees.ReadEmployes();
             }
         }
+        #endregion
 
+        #region Открытия окно для Изменения таблиц
         private LambdaCommand? _updateItem;
         public ICommand UpdateItem => _updateItem ??= new(_updateItemCommandExecuted);
 
@@ -85,39 +84,23 @@ namespace CourseWork.ViewModels
                 _onOpenUpdateEmployeeCommand();
             }
         }
+        #endregion
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        private readonly IWorkUser _workUser;
         public MainWindowViewModel()
         {
             Title = "Главное окно";
-            Employees = new ObservableCollection<Employee>(CRUDEmployees.ReadEmployes());
+            
         }
 
         public MainWindowViewModel(IWorkUser WorkUser) : this()
         {
             _workUser = WorkUser;
-            
+            Employees = new ObservableCollection<Employee>(CRUDEmployees.ReadEmployes());
+
         }
 
     }
