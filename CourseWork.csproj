@@ -10,7 +10,7 @@
   <ItemGroup>
     <Folder Include="Data\" />
     <Folder Include="Models\" />
-    <Folder Include="Views\" />
+    <Folder Include="Views\CRUDView\" />
   </ItemGroup>
 
 </Project>
