@@ -1,4 +1,5 @@
-﻿using CourseWork.ViewModels;
+﻿using CourseWork.Services;
+using CourseWork.ViewModels;
 using CourseWork.Views.CRUDView.Employee;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -26,6 +27,8 @@ namespace CourseWork
 
             services.AddSingleton<MainWindowViewModel>();
             services.AddTransient<CreateEmployeeWindows>();
+
+            services.AddSingleton<IWorkUser, WorkUser>();
 
             services.AddTransient(
                 s => 

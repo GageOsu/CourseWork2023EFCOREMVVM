@@ -1,4 +1,5 @@
 ﻿using CourseWork.Infrastructure.Commands;
+using CourseWork.Services;
 using CourseWork.ViewModels.Base;
 using System;
 using System.Collections.Generic;
@@ -11,9 +12,15 @@ namespace CourseWork.ViewModels
 {
     internal class MainWindowViewModel : TitleViewModel
     {
+        private readonly IWorkUser _workUser;
         public MainWindowViewModel() 
         {
             Title = "Главное окно";
+        }
+
+        public MainWindowViewModel(IWorkUser WorkUser) : this()
+        {
+            _workUser = WorkUser;
         }
 
         private LambdaCommand? _openCreateWindowCommand;
