@@ -31,7 +31,7 @@ namespace CourseWork.ViewModels
 
         private void _onOpenMianWindowCommandExecuted()
         {
-
+            _workUser.OpenMainWindow();
         }
     }
 }

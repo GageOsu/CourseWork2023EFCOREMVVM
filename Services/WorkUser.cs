@@ -45,7 +45,6 @@ namespace CourseWork.Services
             window.Closed += (_, _) => _createEmployeeWindows = null;
 
             _createEmployeeWindows = window;
-
             window.Show();
         }
     }

@@ -26,7 +26,7 @@ namespace CourseWork
             var services = new ServiceCollection();
 
             services.AddSingleton<MainWindowViewModel>();
-            services.AddTransient<CreateEmployeeWindows>();
+            services.AddTransient<CreateViewModel>();
 
             services.AddSingleton<IWorkUser, WorkUser>();
 

@@ -29,7 +29,7 @@ namespace CourseWork.ViewModels
 
         private void _onOpenCreateWindowCommandExecuted()
         {
-
+            _workUser.OpenCreateWindow();
         }
     }
 }
