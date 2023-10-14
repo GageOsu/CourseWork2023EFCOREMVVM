@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CourseWork.Views.CRUDView.Employee;
+using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -13,5 +15,17 @@ namespace CourseWork
     /// </summary>
     public partial class App : Application
     {
+        private static IServiceProvider _services;
+
+        public static IServiceProvider Services => _services??= InitializeServices().BuildServiceProvider();
+
+        private static IServiceCollection InitializeServices()
+        {
+            var services = new ServiceCollection();
+
+            services.AddSingleton<MainWindow>();
+            services.AddTransient<CreateEmployeeWindows>();
+            return services;
+        }
     }
 }
