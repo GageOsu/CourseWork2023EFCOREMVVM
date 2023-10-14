@@ -1,4 +1,5 @@
-﻿using CourseWork.Views.CRUDView.Employee;
+﻿using CourseWork.ViewModels;
+using CourseWork.Views.CRUDView.Employee;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -23,9 +24,34 @@ namespace CourseWork
         {
             var services = new ServiceCollection();
 
-            services.AddSingleton<MainWindow>();
+            services.AddSingleton<MainWindowViewModel>();
             services.AddTransient<CreateEmployeeWindows>();
+
+            services.AddTransient(
+                s => 
+                {
+                    var model = s.GetRequiredService<MainWindowViewModel>();
+                    var window = new MainWindow { DataContext = model };
+                    return window;
+                });
+
+            services.AddTransient(
+                s =>
+                {
+                    var model = s.GetRequiredService<CreateViewModel>();
+                    var window = new CreateEmployeeWindows { DataContext = model };
+                    return window;
+                });
+
+
             return services;
+        }
+
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            base.OnStartup(e);
+
+            Services.GetRequiredService<MainWindow>().Show();
         }
     }
 }

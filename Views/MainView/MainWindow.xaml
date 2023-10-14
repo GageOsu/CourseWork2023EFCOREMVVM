@@ -4,13 +4,15 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CourseWork"
+        xmlns:vm="clr-namespace:CourseWork.ViewModels"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        d:DataContext="{d:DesignInstance vm:MainWindowViewModel,IsDesignTimeCreatable=True}"
+        Title="{Binding Title}" Height="450" Width="800">
     <Grid>
         <Menu Height="19" VerticalAlignment="Top">
             <MenuItem Header="File">
                 <MenuItem Header="Добавить">
-                    <MenuItem Header="Новый Сотрудник" Command="{Binding OpenCreateNewMedicalPersonnel}"/>
+                    <MenuItem Header="Новый Сотрудник" Command="{Binding OpenCreateWindowCommand}"/>
                     <MenuItem Header="Новая должность" Command="{Binding OpenCreatePosition}"/>
                     <MenuItem Header="Новый Пациент" Command="{Binding OpenCreatePatientsAddresses}"/>
                     <MenuItem Header="Новая Категория" Command="{Binding OpenCreateCatigories}"/>

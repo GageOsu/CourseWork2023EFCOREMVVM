@@ -7,17 +7,57 @@ using System.Threading.Tasks;
 
 namespace CourseWork.Infrastructure.Commands
 {
-    internal class LambdaCommand : Command
+    public class LambdaCommand : Command
     {
-        private readonly Action<object> _execute;
-        private readonly Func<object, bool> _canExecute;
-        public LambdaCommand(Action<object> Execute, Func<object,bool> CanExecute = null) 
-        { 
-            _execute = Execute ?? throw new ArgumentNullException(nameof(Execute));
-            _canExecute = CanExecute;
-        }
-        public override bool CanExecute(object? parameter) => _canExecute?.Invoke(parameter) ?? true;
+        private readonly Delegate? _Execute;
+        private readonly Delegate? _CanExecute;
 
-        public override void Execute(object? parameter) => _execute(parameter);
+        public LambdaCommand(Action<object?> Execute, Func<bool>? CanExecute = null)
+        {
+            _Execute = Execute;
+            _CanExecute = CanExecute;
+        }
+
+        public LambdaCommand(Action<object?> Execute, Func<object?, bool>? CanExecute)
+        {
+            _Execute = Execute;
+            _CanExecute = CanExecute;
+        }
+
+        public LambdaCommand(Action Execute, Func<bool>? CanExecute = null)
+        {
+            _Execute = Execute;
+            _CanExecute = CanExecute;
+        }
+
+        public LambdaCommand(Action Execute, Func<object?, bool>? CanExecute)
+        {
+            _Execute = Execute;
+            _CanExecute = CanExecute;
+        }
+
+        protected override bool CanExecute(object? p)
+        {
+            if (!base.CanExecute(p)) return false;
+            return _CanExecute switch
+            {
+                null => true,
+                Func<bool> can_exec => can_exec(),
+                Func<object?, bool> can_exec => can_exec(p),
+                _ => throw new InvalidOperationException($"Тип делегата {_CanExecute.GetType()} не поддерживается командой")
+            };
+        }
+
+        protected override void Execute(object? p)
+        {
+            switch (_Execute)
+            {
+                default: throw new InvalidOperationException($"Тип делегата {_Execute.GetType()} не поддерживается командой");
+                case null: throw new InvalidOperationException("Не указан делегат вызова для команды");
+
+                case Action execute: execute(); break;
+                case Action<object?> execute: execute(p); break;
+            }
+        }
     }
 }
