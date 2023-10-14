@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace CourseWork.Services
 {
-    internal interface Interface1
+    internal interface IWorkUser
     {
+        void OpenMainWindow();
+
+        void OpenCreateWindow();
     }
 }

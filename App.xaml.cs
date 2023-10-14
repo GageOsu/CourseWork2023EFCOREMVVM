@@ -54,7 +54,7 @@ namespace CourseWork
         {
             base.OnStartup(e);
 
-            Services.GetRequiredService<MainWindow>().Show();
+            Services.GetRequiredService<IWorkUser>().OpenMainWindow();
         }
     }
 }
