@@ -10,17 +10,17 @@ using System.Windows.Input;
 
 namespace CourseWork.ViewModels
 {
-    internal class CreateViewModel : TitleViewModel
+    internal class CreateEmployeeViewModel : TitleViewModel
     {
 
         private readonly IWorkUser _workUser;
        
-        public CreateViewModel() 
+        public CreateEmployeeViewModel() 
         {
             Title = "Второек окно";
         }
 
-        public CreateViewModel(IWorkUser workUser) : this()
+        public CreateEmployeeViewModel(IWorkUser workUser) : this()
         {
             _workUser = workUser;
         }

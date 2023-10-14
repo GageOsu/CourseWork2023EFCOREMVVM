@@ -17,7 +17,7 @@ namespace CourseWork
     /// </summary>
     public partial class App : Application
     {
-        private static IServiceProvider _services;
+        private static IServiceProvider? _services;
 
         public static IServiceProvider Services => _services??= InitializeServices().BuildServiceProvider();
 
@@ -26,7 +26,7 @@ namespace CourseWork
             var services = new ServiceCollection();
 
             services.AddSingleton<MainWindowViewModel>();
-            services.AddTransient<CreateViewModel>();
+            services.AddTransient<CreateEmployeeViewModel>();
 
             services.AddSingleton<IWorkUser, WorkUser>();
 
@@ -41,7 +41,7 @@ namespace CourseWork
             services.AddTransient(
                 s =>
                 {
-                    var model = s.GetRequiredService<CreateViewModel>();
+                    var model = s.GetRequiredService<CreateEmployeeViewModel>();
                     var window = new CreateEmployeeWindows { DataContext = model };
                     return window;
                 });
