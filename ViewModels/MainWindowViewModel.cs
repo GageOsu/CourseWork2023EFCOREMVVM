@@ -57,6 +57,18 @@ namespace CourseWork.ViewModels
             }
         }
 
+        private LambdaCommand? _updateItem;
+        public ICommand UpdateItem => _updateItem ??= new(_updateItemCommandExecuted);
+
+        public void _updateItemCommandExecuted()
+        {
+            if (SelectedTabItem.Name == "EmployeesTab" && SelectedEmployees != null)
+            {
+
+            }
+        }
+
+
 
 
 

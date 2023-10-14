@@ -60,5 +60,23 @@ namespace CourseWork.Models.Data
             }
             return result;
         }
+
+        public bool UpdateEmployee(Employee NewEmployee)
+        {
+            bool result = false;
+            using (StomatologicClinicContext db = new StomatologicClinicContext())
+            {
+                Employee OldEmployee = db.Employees.FirstOrDefault(p => p.Idemployee == NewEmployee.Idemployee);
+                {
+                    OldEmployee.SurnameEmployee = NewEmployee.SurnameEmployee;
+                    OldEmployee.NameEmployee = NewEmployee.NameEmployee;
+                    OldEmployee.MiddleNameEmployee = NewEmployee.MiddleNameEmployee;
+                    OldEmployee.Idposition = NewEmployee.Idposition;
+                    db.SaveChanges();
+                    result = true;
+                }
+            }
+            return result;
+        }
     }
 }

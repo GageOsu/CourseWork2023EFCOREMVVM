@@ -1,0 +1,29 @@
+﻿<Window x:Class="CourseWork.Views.CRUDView.Employee.UpdateEmployeeWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CourseWork.Views.CRUDView.Employee"
+        mc:Ignorable="d"
+        Title="UpdateEmployeeWindow" Height="300" Width="300">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Orientation="Vertical"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Width="200">
+            <TextBlock Text="Фамилия"/>
+            <TextBox Text="{Binding MedicalSelectedItem.Surname}"/>
+            <TextBlock Text="Имя"/>
+            <TextBox Text="{Binding MedicalSelectedItem.Name}"/>
+            <TextBlock Text="Отчество"/>
+            <TextBox Text="{Binding MedicalSelectedItem.MiddleName}"/>
+            <TextBlock Text="Должность"/>
+            <ComboBox ItemsSource="{Binding Positions}" DisplayMemberPath="Position1" SelectedItem="{Binding Position}"/>
+        </StackPanel>
+        <Button Grid.Row="1" Content="Изменить" Command="{Binding UpdateMedicalPesonel}"/>
+    </Grid>
+</Window>
