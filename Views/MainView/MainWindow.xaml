@@ -13,12 +13,7 @@
             <MenuItem Header="File">
                 <MenuItem Header="Добавить">
                     <MenuItem Header="Новый Сотрудник" Command="{Binding OpenCreateWindowCommand}"/>
-                    <MenuItem Header="Новая должность" Command="{Binding OpenCreatePosition}"/>
-                    <MenuItem Header="Новый Пациент" Command="{Binding OpenCreatePatientsAddresses}"/>
-                    <MenuItem Header="Новая Категория" Command="{Binding OpenCreateCatigories}"/>
                 </MenuItem>
-                <MenuItem Header="Open Project"/>
-                <MenuItem Header="Open Project"/>
                 <MenuItem Header="Open Project"/>
                 <MenuItem Header="Open Project"/>
                 <Separator/>
@@ -26,32 +21,6 @@
             </MenuItem>
         </Menu>
         <TabControl Margin="0,19,0,0" SelectedItem="{Binding SelectetTabItem}">
-
-            <TabItem Name="PatientsTab">
-                <TabItem.Header>
-                    <TextBlock Text="Пациенты"/>
-                </TabItem.Header>
-                <TabItem.ContextMenu>
-                    <ContextMenu>
-                        <MenuItem Header="Редактирова" Command="{Binding UpdateItem}"/>
-                        <MenuItem Header="Удалить" Command="{Binding DeleteItem}"/>
-                    </ContextMenu>
-                </TabItem.ContextMenu>
-                <ListView x:Name="ViewAllPatients" ItemsSource="{Binding AllPatients}"
-                          SelectedItem="">
-                    <ListView.View>
-                        <GridView>
-                            <GridViewColumn DisplayMemberBinding="{Binding Path=Surname}" Header="Фамилия"/>
-                            <GridViewColumn DisplayMemberBinding="{Binding Path=Name}" Header="Имя"/>
-                            <GridViewColumn DisplayMemberBinding="{Binding Path=MiddleName}" Header="Отчество"/>
-                            <GridViewColumn DisplayMemberBinding="{Binding Path=Sex}" Header="Пол"/>
-                            <GridViewColumn DisplayMemberBinding="{Binding Path=InsuranceCompany}" Header="Страховая компания"/>
-                            <GridViewColumn DisplayMemberBinding="{Binding Path=Mhipolicy}" Header="Полис"/>
-                            <GridViewColumn DisplayMemberBinding="{Binding Path=PhoneNumber}" Header="Номер телефона"/>
-                        </GridView>
-                    </ListView.View>
-                </ListView>
-            </TabItem>
 
             <TabItem Name="MedicalPersonalTab">
                 <TabItem.Header>
@@ -71,100 +40,6 @@
                             <GridViewColumn DisplayMemberBinding="{Binding Path=Name}" Header="Имя"/>
                             <GridViewColumn DisplayMemberBinding="{Binding Path=MiddleName}" Header="Отчество"/>
                             <GridViewColumn DisplayMemberBinding="{Binding Path=MedicalPersonnelsPosition.Position1}" Header="Должность"/>
-                        </GridView>
-                    </ListView.View>
-                </ListView>
-            </TabItem>
-
-            <TabItem Name="ServicesTab">
-                <TabItem.Header>
-                    <TextBlock Text="Услуги"/>
-                </TabItem.Header>
-                <TabItem.ContextMenu>
-                    <ContextMenu>
-                        <MenuItem Header="Редактирова" Command="{Binding UpdateItem}"/>
-                        <MenuItem Header="Удалить" Command="{Binding DeleteItem}"/>
-                    </ContextMenu>
-                </TabItem.ContextMenu>
-                <ListView x:Name="ViewAllTypeSerices" ItemsSource="{Binding AllTypeService}"
-                          SelectedItem="{Binding SelectedMedicalPersonnels}">
-                    <ListView.View>
-                        <GridView>
-                            <GridViewColumn DisplayMemberBinding="{Binding Path=CategoriesPosition.Category1}" Header="Категория"/>
-                            <GridViewColumn DisplayMemberBinding="{Binding Path=DescriptionService}" Header="Услуга"/>
-                            <GridViewColumn DisplayMemberBinding="{Binding Path=Price}" Header="Цена"/>
-                        </GridView>
-                    </ListView.View>
-                </ListView>
-            </TabItem>
-
-            <TabItem Name="ReportTab">
-                <TabItem.Header>
-                    <TextBlock Text="Отчет"/>
-                </TabItem.Header>
-                <TabItem.ContextMenu>
-                    <ContextMenu>
-                        <MenuItem Header="Редактирова" Command="{Binding UpdateItem}"/>
-                        <MenuItem Header="Удалить" Command="{Binding DeleteItem}"/>
-                    </ContextMenu>
-                </TabItem.ContextMenu>
-                <ListView x:Name="ViewAllRecord" ItemsSource="{Binding AllRecordHistory}"
-                          SelectedItem="{Binding SelectedMedicalPersonnels}">
-                    <ListView.View>
-                        <GridView>
-                            <GridViewColumn DisplayMemberBinding="{Binding Path=PatientId.Surname}" Header="Фамилия пациента"/>
-                            <GridViewColumn DisplayMemberBinding="{Binding Path=PatientId.Name}" Header="Имя пациента"/>
-                            <GridViewColumn DisplayMemberBinding="{Binding Path=PatientId.MiddleName}" Header="Отчество пациента"/>
-                            <GridViewColumn DisplayMemberBinding="{Binding Path=MedicalPersonnelsPosition.Surname}" Header="Фамилия врача"/>
-                            <GridViewColumn DisplayMemberBinding="{Binding Path=MedicalPersonnelsPosition.Name}" Header="Имя врача"/>
-                            <GridViewColumn DisplayMemberBinding="{Binding Path=MedicalPersonnelsPosition.MiddleName}" Header="Отчество врача"/>
-                            <GridViewColumn DisplayMemberBinding="{Binding Path=TypeServiceId.DescriptionService}" Header="Описание врача"/>
-                            <GridViewColumn DisplayMemberBinding="{Binding Path=Count}" Header="Колличество оказаной услуги"/>
-                            <GridViewColumn DisplayMemberBinding="{Binding Path=DateRegistration}" Header="Дата регистрации"/>
-                            <GridViewColumn DisplayMemberBinding="{Binding Path=DateСompletion}" Header="Дата выполения"/>
-                            <GridViewColumn DisplayMemberBinding="{Binding Path=Status}" Header="Статус"/>
-                        </GridView>
-                    </ListView.View>
-                </ListView>
-            </TabItem>
-
-            <TabItem Name="CategoriesTab">
-                <TabItem.Header>
-                    <TextBlock Text="Категории услуг"/>
-                </TabItem.Header>
-                <TabItem.ContextMenu>
-                    <ContextMenu>
-                        <MenuItem Header="Редактирова" Command="{Binding UpdateItem}"/>
-                        <MenuItem Header="Удалить" Command="{Binding DeleteItem}"/>
-                    </ContextMenu>
-                </TabItem.ContextMenu>
-                <ListView x:Name="ViewAllCategories" ItemsSource="{Binding AllCategories}"
-                          SelectedItem="{Binding SelectedCategories}">
-                    <ListView.View>
-                        <GridView>
-                            <GridViewColumn DisplayMemberBinding="{Binding Path=Category1}" Header="Категории"/>
-                        </GridView>
-                    </ListView.View>
-                </ListView>
-            </TabItem>
-
-
-
-            <TabItem Name="PositionTab">
-                <TabItem.Header>
-                    <TextBlock Text="Должности"/>
-                </TabItem.Header>
-                <TabItem.ContextMenu>
-                    <ContextMenu>
-                        <MenuItem Header="Редактирова" Command="{Binding UpdateItem}"/>
-                        <MenuItem Header="Удалить" Command="{Binding DeleteItem}"/>
-                    </ContextMenu>
-                </TabItem.ContextMenu>
-                <ListView x:Name="ViewAllPositions" ItemsSource="{Binding AllPosition}"
-                          SelectedItem="{Binding SelectedPosition}">
-                    <ListView.View>
-                        <GridView>
-                            <GridViewColumn DisplayMemberBinding="{Binding Path=Position1}" Header="Должности"/>
                         </GridView>
                     </ListView.View>
                 </ListView>

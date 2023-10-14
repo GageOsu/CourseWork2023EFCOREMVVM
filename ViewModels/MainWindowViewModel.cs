@@ -1,8 +1,11 @@
 ﻿using CourseWork.Infrastructure.Commands;
+using CourseWork.Models;
+using CourseWork.Models.Tables;
 using CourseWork.Services;
 using CourseWork.ViewModels.Base;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,6 +25,7 @@ namespace CourseWork.ViewModels
         {
             _workUser = WorkUser;
         }
+
 
         private LambdaCommand? _openCreateWindowCommand;
 
