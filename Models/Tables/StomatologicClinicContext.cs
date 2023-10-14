@@ -13,6 +13,7 @@ public partial class StomatologicClinicContext : DbContext
     public StomatologicClinicContext(DbContextOptions<StomatologicClinicContext> options)
         : base(options)
     {
+        Database.EnsureCreated();
     }
 
     public virtual DbSet<Account> Accounts { get; set; }
