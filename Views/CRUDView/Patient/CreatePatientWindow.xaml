@@ -1,0 +1,74 @@
+﻿<Window x:Class="CourseWork.Views.CRUDView.Patient.CreatePatientWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CourseWork.Views.CRUDView.Patient"
+        mc:Ignorable="d"
+        Title="CreatePatientWindow" Height="650" Width="500">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Vertical"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Width="200">
+            <TextBlock Text="Почтовый индекс"/>
+            <TextBox Text=""/>
+            <TextBlock Text="Тип субъекта"/>
+            <ComboBox/>
+            <TextBlock Text="Имя субъекта"/>
+            <TextBox Text=""/>
+            <TextBlock Text="Тип населенного пункта"/>
+            <ComboBox/>
+            <TextBlock Text="населенный пункт"/>
+            <TextBox Text=""/>
+            <TextBlock Text="Тип поселка"/>
+            <TextBox Text=""/>
+            <TextBlock Text="Поселок"/>
+            <TextBox Text=""/>
+            <TextBlock Text="Тип местоположения"/>
+            <TextBox Text=""/>
+            <TextBlock Text="Местоположения"/>
+            <TextBox Text=""/>
+            <TextBlock Text="Номер квартиры"/>
+            <TextBox Text=""/>
+            <TextBlock Text="Структура"/>
+            <TextBox Text=""/>
+            <TextBlock Text="Здание"/>
+            <TextBox Text=""/>
+            <TextBlock Text="Квартира"/>
+            <TextBox Text=""/>
+        </StackPanel>
+        <StackPanel  Grid.Row="0" Grid.Column="1" Orientation="Vertical"
+                     HorizontalAlignment="Center"
+                     VerticalAlignment="Center"
+                     Width="200">
+            <TextBlock Text="Фамилия"/>
+            <TextBox Text=""/>
+            <TextBlock Text="Имя"/>
+            <TextBox Text=""/>
+            <TextBlock Text="Отчество"/>
+            <TextBox Text=""/>
+            <TextBlock Text="Дата рождения"/>
+            <TextBlock Text="Тут календарь"/>
+            <TextBlock Text="Пол"/>
+            <ComboBox/>
+            <TextBlock Text="Номер паспорта"/>
+            <TextBox Text=""/>
+            <TextBlock Text="Номер снилса"/>
+            <TextBox Text=""/>
+            <TextBlock Text="Названия страховой компании"/>
+            <TextBox Text=""/>
+            <TextBlock Text="Номер страховой компании"/>
+            <TextBox Text=""/>
+        </StackPanel>
+        <Button Command="{Binding UpdatePositions}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Content="Новая запись"/>
+    </Grid>
+</Window>

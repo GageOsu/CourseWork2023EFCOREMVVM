@@ -27,55 +27,27 @@ namespace CourseWork.ViewModels.CRUDViewModel.Employees
         private Position _position;
         public Position Position
         {
-            get
-            {
-                return _position;
-            }
-            set
-            {
-                _position = value;
-                OnPropertyChanged(nameof(Position));
-            }
+            get => _position;
+            set => Set(ref _position, value);
         }
         public ObservableCollection<Position> Positions { get; set; }
 
         public string Surname
         {
-            get
-            {
-                return _surname;
-            }
-            set
-            {
-                _surname = value;
-                OnPropertyChanged(nameof(Surname));
-            }
+            get => _surname;
+            set => Set(ref _surname, value);
         }
 
         public string Name
         {
-            get
-            {
-                return _name;
-            }
-            set
-            {
-                _name = value;
-                OnPropertyChanged(nameof(Name));
-            }
+            get => _name;
+            set => Set(ref _name, value);
         }
 
         public string Middlename
         {
-            get
-            {
-                return _middlename;
-            }
-            set
-            {
-                _middlename = value;
-                OnPropertyChanged(nameof(Middlename));
-            }
+            get => _middlename;
+            set => Set(ref _middlename, value);
         }
 
 

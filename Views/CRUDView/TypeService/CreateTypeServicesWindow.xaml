@@ -1,0 +1,27 @@
+﻿<Window x:Class="CourseWork.Views.CRUDView.TypeService.CreateTypeServicesWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CourseWork.Views.CRUDView.TypeService"
+        mc:Ignorable="d"
+        Title="CreateTypeServicesWindow" Height="250" Width="300">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Orientation="Vertical"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Width="200">
+            <TextBlock Text="Категория"/>
+            <ComboBox/>
+            <TextBlock Text="Название услуги"/>
+            <TextBox Text=""/>
+            <TextBlock Text="Цена услуги"/>
+            <TextBox Text=""/>
+        </StackPanel>
+        <Button Command="{Binding CreateNewPosition}" Grid.Row="1" Content="Новая запись"/>
+    </Grid>
+</Window>
