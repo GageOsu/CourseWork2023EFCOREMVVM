@@ -14,40 +14,14 @@ namespace CourseWork.ViewModels.CRUDViewModel.Employees
 {
     internal class UpdateEmployeeViewModel : TitleViewModel
     {
-        private string _name;
-        private string _surname;
-        private string _middlename;
-        private Position _position;
-        CRUDPositions CRUDPositions = new CRUDPositions();
+        MainWindowViewModel _MainWindowViewModel = new MainWindowViewModel();
+
+        CRUDPositions _CRUDPositions = new CRUDPositions();
+        CRUDEmployees _CRUDEmployees = new CRUDEmployees();
+
         public Employee EmployeeSelectedItem { get; set; }
+
         public ObservableCollection<Position> Positions { get; set; }
-
-
-        public string Name
-        {
-            get => _name;
-            set => Set(ref _name, value);
-        }
-
-        public string Surname
-        {
-            get => _surname;
-            set => Set(ref _surname, value);
-        }
-
-        public string Middlename
-        {
-            get => _middlename;
-            set => Set(ref _middlename, value);
-        }
-        public Position Position
-        {
-            get => _position;
-            set => Set(ref _position, value);
-        }
-
-
-
 
 
         private LambdaCommand? _updateEmployees;
@@ -56,7 +30,7 @@ namespace CourseWork.ViewModels.CRUDViewModel.Employees
 
         public void _updateEmployeesExecuted()
         {
-            CRUDEmployees.UpdateEmployee(EmployeeSelectedItem);
+            _CRUDEmployees.UpdateEmployee(EmployeeSelectedItem);
         }
 
 
@@ -64,7 +38,7 @@ namespace CourseWork.ViewModels.CRUDViewModel.Employees
         {
             Title = "Изменение сотрудника";
             EmployeeSelectedItem = MainWindowViewModel.SelectedEmployees;
-            Positions = new ObservableCollection<Position>(CRUDPositions.ReadPositions());
+            Positions = new ObservableCollection<Position>(_CRUDPositions.ReadPositions());
         }
 
 

@@ -49,7 +49,7 @@ namespace CourseWork.Models.Data
             return result;
         }
 
-        public static bool DeleteEmployee(Employee employee)
+        public  bool DeleteEmployee(Employee employee)
         {
             bool result = false;
             using (StomatologicClinicContext db = new StomatologicClinicContext())
@@ -61,7 +61,7 @@ namespace CourseWork.Models.Data
             return result;
         }
 
-        public static bool UpdateEmployee(Employee NewEmployee)
+        public  bool UpdateEmployee(Employee NewEmployee)
         {
             bool result = false;
             using (StomatologicClinicContext db = new StomatologicClinicContext())

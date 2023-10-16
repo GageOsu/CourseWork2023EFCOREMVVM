@@ -13,5 +13,13 @@ namespace CourseWork.Services
         void OpenCreateWindow();
 
         void OpenUpdateEmployeeWindow();
+
+        void OpenCreateCategoryWindow();
+
+        void OpenUpdateCategoryWindow();
+
+        void OpenCreatePatientWindow();
+
+        void OpenUpdatePatientWindow();
     }
 }

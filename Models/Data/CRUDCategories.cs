@@ -15,7 +15,7 @@ namespace CourseWork.Models.Data
         {
             using (StomatologicClinicContext db = new StomatologicClinicContext())
             {
-                var catgories = new ObservableCollection<Category>(db.Categories.Local);
+                var catgories = new ObservableCollection<Category>(db.Categories.ToList());
                 return catgories;
             }
         }
@@ -46,7 +46,7 @@ namespace CourseWork.Models.Data
         }
 
 
-        public static bool UpdateCategory(Category newCategory)
+        public  bool UpdateCategory(Category newCategory)
         {
             bool result = false;
             using (StomatologicClinicContext db = new StomatologicClinicContext())
@@ -61,7 +61,7 @@ namespace CourseWork.Models.Data
             return result;
         }
 
-        public static bool DeleteCategory(Category category)
+        public bool DeleteCategory(Category category)
         {
             bool result = false;
             using (StomatologicClinicContext db = new StomatologicClinicContext())

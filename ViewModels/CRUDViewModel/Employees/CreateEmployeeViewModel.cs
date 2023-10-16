@@ -17,8 +17,6 @@ namespace CourseWork.ViewModels.CRUDViewModel.Employees
     {
 
         private readonly IWorkUser _workUser;
-
-        MainWindowViewModel zxc = new MainWindowViewModel();
         private CRUDPositions _CRUDPositions = new CRUDPositions();
         private CRUDEmployees _CRUDEmployees = new CRUDEmployees();
         private string _surname;
@@ -68,7 +66,6 @@ namespace CourseWork.ViewModels.CRUDViewModel.Employees
         public void _createEmployeesExecuted()
         {
             _CRUDEmployees.CreateEmployes(Surname, Name, Middlename, Position);
-            zxc.Employees = _CRUDEmployees.ReadEmployes();
         }
 
 
@@ -77,11 +74,13 @@ namespace CourseWork.ViewModels.CRUDViewModel.Employees
         public CreateEmployeeViewModel()
         {
             Title = "Второек окно";
+
         }
         #endregion
 
-        public CreateEmployeeViewModel(IWorkUser workUser) : this()
+        public CreateEmployeeViewModel(IWorkUser workUser, MainWindowViewModel mainWindowViewModel) : this()
         {
+            mainWindowViewModel.Employees = _CRUDEmployees.ReadEmployes();
             _workUser = workUser;
             Positions = new ObservableCollection<Position>(_CRUDPositions.ReadPositions());
         }

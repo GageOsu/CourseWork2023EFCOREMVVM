@@ -1,0 +1,14 @@
+﻿<Window x:Class="CourseWork.Views.CRUDView.Patient.UpdatePatientWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CourseWork.Views.CRUDView.Patient"
+        xmlns:vm="clr-namespace:CourseWork.ViewModels.CRUDViewModel.Patients"
+        mc:Ignorable="d"
+        d:DataContext="{d:DesignInstance vm:UpdatePatientViewModel, IsDesignTimeCreatable=True}"
+        Title="" Height="450" Width="800">
+    <Grid>
+        
+    </Grid>
+</Window>

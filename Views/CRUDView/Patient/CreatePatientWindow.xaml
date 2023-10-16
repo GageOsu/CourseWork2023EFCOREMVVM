@@ -4,8 +4,10 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CourseWork.Views.CRUDView.Patient"
+        xmlns:vm="clr-namespace:CourseWork.ViewModels.CRUDViewModel.Patients"
         mc:Ignorable="d"
-        Title="CreatePatientWindow" Height="650" Width="500">
+        d:DataContext="{d:DesignInstance vm:CreatePatientViewModel, IsDesignTimeCreatable=True}"
+        Title="{Binding Title}" Height="650" Width="500">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -20,55 +22,55 @@
                     VerticalAlignment="Center"
                     Width="200">
             <TextBlock Text="Почтовый индекс"/>
-            <TextBox Text=""/>
+            <TextBox Text="{Binding PostalCode}"/>
             <TextBlock Text="Тип субъекта"/>
-            <ComboBox/>
+            <ComboBox ItemsSource="{Binding TypeSubject}" SelectedItem="TypeSubjectString"/>
             <TextBlock Text="Имя субъекта"/>
-            <TextBox Text=""/>
+            <TextBox Text="{Binding NameSubject}"/>
             <TextBlock Text="Тип населенного пункта"/>
-            <ComboBox/>
+            <ComboBox ItemsSource="{Binding TypeLocality}" SelectedItem="TypeLocalityString"/>
             <TextBlock Text="населенный пункт"/>
-            <TextBox Text=""/>
+            <TextBox Text="{Binding Locality}"/>
             <TextBlock Text="Тип поселка"/>
-            <TextBox Text=""/>
+            <TextBox Text="{Binding TypeSettlement}"/>
             <TextBlock Text="Поселок"/>
-            <TextBox Text=""/>
+            <TextBox Text="{Binding Settlement}"/>
             <TextBlock Text="Тип местоположения"/>
-            <TextBox Text=""/>
+            <TextBox Text="{Binding TypeLocation}"/>
             <TextBlock Text="Местоположения"/>
-            <TextBox Text=""/>
+            <TextBox Text="{Binding Location}"/>
             <TextBlock Text="Номер квартиры"/>
-            <TextBox Text=""/>
+            <TextBox Text="{Binding HouseNumber}"/>
             <TextBlock Text="Структура"/>
-            <TextBox Text=""/>
+            <TextBox Text="{Binding Structure}"/>
             <TextBlock Text="Здание"/>
-            <TextBox Text=""/>
+            <TextBox Text="{Binding Building}"/>
             <TextBlock Text="Квартира"/>
-            <TextBox Text=""/>
+            <TextBox Text="{Binding Flat}"/>
         </StackPanel>
         <StackPanel  Grid.Row="0" Grid.Column="1" Orientation="Vertical"
                      HorizontalAlignment="Center"
                      VerticalAlignment="Center"
                      Width="200">
             <TextBlock Text="Фамилия"/>
-            <TextBox Text=""/>
+            <TextBox Text="{Binding Surname}"/>
             <TextBlock Text="Имя"/>
-            <TextBox Text=""/>
+            <TextBox Text="{Binding Name}"/>
             <TextBlock Text="Отчество"/>
-            <TextBox Text=""/>
+            <TextBox Text="{Binding MiddleName}"/>
             <TextBlock Text="Дата рождения"/>
-            <TextBlock Text="Тут календарь"/>
+            <DatePicker SelectedDate="{Binding DateBrith}"/>
             <TextBlock Text="Пол"/>
-            <ComboBox/>
+            <ComboBox ItemsSource="{Binding Sex}" SelectedItem="SexString"/>
             <TextBlock Text="Номер паспорта"/>
-            <TextBox Text=""/>
+            <TextBox Text="{Binding PassportHumber}"/>
             <TextBlock Text="Номер снилса"/>
-            <TextBox Text=""/>
+            <TextBox Text="{Binding SnilsNumber}"/>
             <TextBlock Text="Названия страховой компании"/>
-            <TextBox Text=""/>
+            <TextBox Text="{Binding NameInsuranceCompany}"/>
             <TextBlock Text="Номер страховой компании"/>
-            <TextBox Text=""/>
+            <TextBox Text="{Binding MHIPolicyNumber}"/>
         </StackPanel>
-        <Button Command="{Binding UpdatePositions}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Content="Новая запись"/>
+        <Button Command="{Binding CreatePatient}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Content="Новая запись"/>
     </Grid>
 </Window>

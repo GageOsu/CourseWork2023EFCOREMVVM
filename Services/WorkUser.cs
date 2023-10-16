@@ -1,4 +1,7 @@
-﻿using CourseWork.Views.CRUDView.Employee;
+﻿using CourseWork.ViewModels.CRUDViewModel.Categories;
+using CourseWork.Views.CRUDView.Category;
+using CourseWork.Views.CRUDView.Employee;
+using CourseWork.Views.CRUDView.Patient;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -62,6 +65,66 @@ namespace CourseWork.Services
             window.Closed += (_, _) => updateEmployeeWindow = null;
 
             updateEmployeeWindow = window;
+            window.Show();
+        }
+
+        private CreateCategoryWindow? createCategoryWindow;
+        public void OpenCreateCategoryWindow()
+        {
+            if(createCategoryWindow is { } window)
+            {
+                window.Show();
+                return;
+            }
+
+            window = _services.GetRequiredService<CreateCategoryWindow>();
+            window.Closed += (_, _) => createCategoryWindow = null;
+            createCategoryWindow = window;
+            window.Show();
+        }
+
+        private UpdateCategoryWindow? updateCategoryWindow;
+        public void OpenUpdateCategoryWindow()
+        {
+            if(updateCategoryWindow is { } window)
+            {
+                window.Show();
+                return;
+            }
+
+            window = _services.GetRequiredService<UpdateCategoryWindow>();
+            window.Closed += (_, _) => updateCategoryWindow = null; 
+            updateCategoryWindow = window;
+            window.Show();
+        }
+
+        private CreatePatientWindow? createPatientWindow;
+        public void OpenCreatePatientWindow()
+        {
+            if (createPatientWindow is { } window)
+            {
+                window.Show(); 
+                return;
+            }
+
+            window = _services.GetRequiredService<CreatePatientWindow>();
+            window.Closed += (_, _) => createPatientWindow = null; 
+            createPatientWindow = window;
+            window.Show();
+        }
+
+        private UpdatePatientWindow? updatePatientWindow;
+        public void OpenUpdatePatientWindow()
+        {
+            if (updatePatientWindow is { } window)
+            {
+                window.Show();
+                return;
+            }
+
+            window = _services.GetRequiredService<UpdatePatientWindow>();
+            window.Closed += (_, _) => updatePatientWindow = null;
+            updatePatientWindow = window;
             window.Show();
         }
     }

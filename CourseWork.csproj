@@ -22,4 +22,9 @@
 		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="ViewModels\CRUDViewModel\Positions\" />
+	  <Folder Include="ViewModels\CRUDViewModel\TypeService\" />
+	</ItemGroup>
+
 </Project>
