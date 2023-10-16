@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace CourseWork.Models.Tables;
+namespace CourseWork.Models.Table;
 
 public partial class Address
 {
@@ -32,4 +32,6 @@ public partial class Address
     public string? Building { get; set; }
 
     public string? Flat { get; set; }
+
+    public virtual ICollection<Patient> Patients { get; set; } = new List<Patient>();
 }

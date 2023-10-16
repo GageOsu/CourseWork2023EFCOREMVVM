@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
-namespace CourseWork.Models.Tables;
+namespace CourseWork.Models.Table;
 
 public partial class StomatologicClinicContext : DbContext
 {
@@ -13,7 +13,6 @@ public partial class StomatologicClinicContext : DbContext
     public StomatologicClinicContext(DbContextOptions<StomatologicClinicContext> options)
         : base(options)
     {
-        Database.EnsureCreated();
     }
 
     public virtual DbSet<Account> Accounts { get; set; }
@@ -29,6 +28,8 @@ public partial class StomatologicClinicContext : DbContext
     public virtual DbSet<Patient> Patients { get; set; }
 
     public virtual DbSet<Position> Positions { get; set; }
+
+    public virtual DbSet<RegistrationService> RegistrationServices { get; set; }
 
     public virtual DbSet<ServicePriceHistory> ServicePriceHistories { get; set; }
 
@@ -174,6 +175,14 @@ public partial class StomatologicClinicContext : DbContext
                 .HasMaxLength(11)
                 .IsFixedLength();
             entity.Property(e => e.Surname).HasMaxLength(23);
+
+            entity.HasOne(d => d.IdadressesNavigation).WithMany(p => p.Patients)
+                .HasForeignKey(d => d.Idadresses)
+                .HasConstraintName("FK_Patients_Addresses");
+
+            entity.HasOne(d => d.IdinsurancePolicyNavigation).WithMany(p => p.Patients)
+                .HasForeignKey(d => d.IdinsurancePolicy)
+                .HasConstraintName("FK_Patients_InsurancePolicies");
         });
 
         modelBuilder.Entity<Position>(entity =>
@@ -186,6 +195,36 @@ public partial class StomatologicClinicContext : DbContext
             entity.Property(e => e.Position1)
                 .HasMaxLength(23)
                 .HasColumnName("Position");
+        });
+
+        modelBuilder.Entity<RegistrationService>(entity =>
+        {
+            entity.HasKey(e => e.IdserviceRegistration).HasName("PK_RegistrationServices_ID");
+
+            entity.Property(e => e.IdserviceRegistration)
+                .ValueGeneratedNever()
+                .HasColumnName("IDServiceRegistration");
+            entity.Property(e => e.DateOfService).HasColumnType("date");
+            entity.Property(e => e.DateRegistration)
+                .HasDefaultValueSql("(getdate())")
+                .HasColumnType("date");
+            entity.Property(e => e.Idemployee).HasColumnName("IDEmployee");
+            entity.Property(e => e.Idpatient).HasColumnName("IDPatient");
+            entity.Property(e => e.Idservice).HasColumnName("IDService");
+            entity.Property(e => e.Price).HasColumnType("money");
+
+            entity.HasOne(d => d.IdpatientNavigation).WithMany(p => p.RegistrationServices)
+                .HasForeignKey(d => d.Idpatient)
+                .HasConstraintName("FK_RegistrationServices_Patients");
+
+            entity.HasOne(d => d.IdserviceNavigation).WithMany(p => p.RegistrationServices)
+                .HasForeignKey(d => d.Idservice)
+                .HasConstraintName("FK_RegistrationServices_TypeServices");
+
+            entity.HasOne(d => d.IdserviceRegistrationNavigation).WithOne(p => p.RegistrationService)
+                .HasForeignKey<RegistrationService>(d => d.IdserviceRegistration)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_RegistrationServices_Employees");
         });
 
         modelBuilder.Entity<ServicePriceHistory>(entity =>

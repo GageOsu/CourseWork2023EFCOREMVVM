@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace CourseWork.Models.Tables;
+namespace CourseWork.Models.Table;
 
 public partial class Patient
 {
@@ -26,4 +26,10 @@ public partial class Patient
     public string? Sex { get; set; }
 
     public string? PhoneNumber { get; set; }
+
+    public virtual Address? IdadressesNavigation { get; set; }
+
+    public virtual InsurancePolicy? IdinsurancePolicyNavigation { get; set; }
+
+    public virtual ICollection<RegistrationService> RegistrationServices { get; set; } = new List<RegistrationService>();
 }

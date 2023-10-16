@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace CourseWork.Models.Tables;
+namespace CourseWork.Models.Table;
 
 public partial class Employee
 {
@@ -18,4 +18,6 @@ public partial class Employee
     public virtual ICollection<Account> Accounts { get; set; } = new List<Account>();
 
     public virtual Position? IdpositionNavigation { get; set; }
+
+    public virtual RegistrationService? RegistrationService { get; set; }
 }

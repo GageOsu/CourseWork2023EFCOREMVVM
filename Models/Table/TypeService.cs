@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace CourseWork.Models.Tables;
+namespace CourseWork.Models.Table;
 
 public partial class TypeService
 {
@@ -14,6 +14,8 @@ public partial class TypeService
     public decimal PriceService { get; set; }
 
     public virtual Category? IdcategoryNavigation { get; set; }
+
+    public virtual ICollection<RegistrationService> RegistrationServices { get; set; } = new List<RegistrationService>();
 
     public virtual ICollection<ServicePriceHistory> ServicePriceHistories { get; set; } = new List<ServicePriceHistory>();
 }

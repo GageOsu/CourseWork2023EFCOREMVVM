@@ -1,4 +1,4 @@
-﻿using CourseWork.Models.Tables;
+﻿using CourseWork.Models.Table;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -17,7 +17,7 @@ namespace CourseWork.Models.Data
         {
             using (StomatologicClinicContext db = new StomatologicClinicContext())
             {
-                var patient = new ObservableCollection<Patient>(db.Patients.Include(u => u.Idadresses).Include(c => c.IdinsurancePolicy));
+                var patient = new ObservableCollection<Patient>(db.Patients.Include(u => u.IdadressesNavigation).Include(c => c.IdinsurancePolicyNavigation));
                 return patient;
             }
         }

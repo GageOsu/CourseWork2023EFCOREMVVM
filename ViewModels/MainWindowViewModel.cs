@@ -1,7 +1,7 @@
 ﻿using CourseWork.Infrastructure.Commands;
 using CourseWork.Models;
 using CourseWork.Models.Data;
-using CourseWork.Models.Tables;
+using CourseWork.Models.Table;
 using CourseWork.Services;
 using CourseWork.ViewModels.Base;
 using System;

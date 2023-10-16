@@ -1,4 +1,4 @@
-﻿using CourseWork.Models.Tables;
+﻿using CourseWork.Models.Table;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;

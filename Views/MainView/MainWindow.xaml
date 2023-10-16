@@ -22,7 +22,6 @@
             </MenuItem>
         </Menu>
         <TabControl Margin="0,19,0,0" SelectedItem="{Binding SelectedTabItem}">
-
             <TabItem Name="EmployeesTab">
                 <TabItem.Header>
                     <TextBlock Text="Медицинский персонал"/>
@@ -77,7 +76,7 @@
                     </ContextMenu>
                 </TabItem.ContextMenu>
                 <ListView x:Name="Patients" ItemsSource="{Binding Patients}"
-                          SelectedItem="{Binding SelectedPatients}">
+                          SelectedItem="{Binding SelectedPatients}" ScrollViewer.HorizontalScrollBarVisibility="Visible">
                     <ListView.View>
                         <GridView>
                             <GridViewColumn DisplayMemberBinding="{Binding Path = Surname}" Header="Фамилия"/>
@@ -88,21 +87,21 @@
                             <GridViewColumn DisplayMemberBinding="{Binding Path = PhoneNumber}" Header="Номер телефона"/>
                             <GridViewColumn DisplayMemberBinding="{Binding Path = PassportNumber}" Header="Номер паспорта"/>
                             <GridViewColumn DisplayMemberBinding="{Binding Path = SnilsNumber}" Header="Номер снилса"/>
-                            <GridViewColumn DisplayMemberBinding="{Binding Path = IdinsurancePolicy}" Header="Название страховой компании"/>
-                            <GridViewColumn DisplayMemberBinding="{Binding Path = IdinsurancePolicy}" Header="Номер ОМС"/>
-                            <GridViewColumn DisplayMemberBinding="{Binding Path = Idadresses}" Header="Индекс почты"/>
-                            <GridViewColumn DisplayMemberBinding="{Binding Path = Idadresses}" Header="Субъект"/>
-                            <GridViewColumn DisplayMemberBinding="{Binding Path = Idadresses}" Header="название субъекта"/>
-                            <GridViewColumn DisplayMemberBinding="{Binding Path = Idadresses}" Header="Тип населенный пунк"/>
-                            <GridViewColumn DisplayMemberBinding="{Binding Path = Idadresses}" Header="Населенный пункт"/>
-                            <GridViewColumn DisplayMemberBinding="{Binding Path = Idadresses}" Header="Тип поселка"/>
-                            <GridViewColumn DisplayMemberBinding="{Binding Path = Idadresses}" Header="Поселок"/>
-                            <GridViewColumn DisplayMemberBinding="{Binding Path = Idadresses}" Header="Тип местоположения"/>
-                            <GridViewColumn DisplayMemberBinding="{Binding Path = Idadresses}" Header="Местоположения"/>
-                            <GridViewColumn DisplayMemberBinding="{Binding Path = Idadresses}" Header="Номер дома"/>
-                            <GridViewColumn DisplayMemberBinding="{Binding Path = Idadresses}" Header="Строение"/>
-                            <GridViewColumn DisplayMemberBinding="{Binding Path = Idadresses}" Header="Здание"/>
-                            <GridViewColumn DisplayMemberBinding="{Binding Path = Idadresses}" Header="Дом"/>
+                            <GridViewColumn DisplayMemberBinding="{Binding Path = IdinsurancePolicyNavigation.NameInsuranceCompany}" Header="Название страховой компании"/>
+                            <GridViewColumn DisplayMemberBinding="{Binding Path = IdinsurancePolicyNavigation.MhipolicyNumber}" Header="Номер ОМС"/>
+                            <GridViewColumn DisplayMemberBinding="{Binding Path = IdadressesNavigation.PostalCode}" Header="Индекс почты"/>
+                            <GridViewColumn DisplayMemberBinding="{Binding Path = IdadressesNavigation.TypeSettlement}" Header="Субъект"/>
+                            <GridViewColumn DisplayMemberBinding="{Binding Path = IdadressesNavigation.NameSubject}" Header="название субъекта"/>
+                            <GridViewColumn DisplayMemberBinding="{Binding Path = IdadressesNavigation.TypeLocality}" Header="Тип населенный пунк"/>
+                            <GridViewColumn DisplayMemberBinding="{Binding Path = IdadressesNavigation.Locality}" Header="Населенный пункт"/>
+                            <GridViewColumn DisplayMemberBinding="{Binding Path = IdadressesNavigation.TypeSettlement}" Header="Тип поселка"/>
+                            <GridViewColumn DisplayMemberBinding="{Binding Path = IdadressesNavigation.Settlement}" Header="Поселок"/>
+                            <GridViewColumn DisplayMemberBinding="{Binding Path = IdadressesNavigation.TypeLocation}" Header="Тип местоположения"/>
+                            <GridViewColumn DisplayMemberBinding="{Binding Path = IdadressesNavigation.Location}" Header="Местоположения"/>
+                            <GridViewColumn DisplayMemberBinding="{Binding Path = IdadressesNavigation.HouseNumber}" Header="Номер дома"/>
+                            <GridViewColumn DisplayMemberBinding="{Binding Path = IdadressesNavigation.Structure}" Header="Строение"/>
+                            <GridViewColumn DisplayMemberBinding="{Binding Path = IdadressesNavigation.Building}" Header="Здание"/>
+                            <GridViewColumn DisplayMemberBinding="{Binding Path = IdadressesNavigation.Flat}" Header="Дом"/>
                         </GridView>
                     </ListView.View>
                 </ListView>
