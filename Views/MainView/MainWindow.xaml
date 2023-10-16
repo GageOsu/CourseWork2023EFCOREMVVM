@@ -13,10 +13,9 @@
             <MenuItem Header="File">
                 <MenuItem Header="Добавить">
                     <MenuItem Header="Новый Сотрудник" Command="{Binding OpenCreateWindowCommand}"/>
-                    <MenuItem Header="Новая категория" Command="{Binding OpenCreateCategoriesWindowCommand}"/>
+                    <MenuItem Header="Новая Категория" Command="{Binding OpenCreateCategoriesWindowCommand}"/>
+                    <MenuItem Header="Новый Пациент" Command="{Binding OpenCreatePatientCommand}"/>
                 </MenuItem>
-                <MenuItem Header="Open Project"/>
-                <MenuItem Header="Open Project"/>
                 <Separator/>
                 <MenuItem Header="Exit" ></MenuItem>
             </MenuItem>
@@ -90,7 +89,7 @@
                             <GridViewColumn DisplayMemberBinding="{Binding Path = IdinsurancePolicyNavigation.NameInsuranceCompany}" Header="Название страховой компании"/>
                             <GridViewColumn DisplayMemberBinding="{Binding Path = IdinsurancePolicyNavigation.MhipolicyNumber}" Header="Номер ОМС"/>
                             <GridViewColumn DisplayMemberBinding="{Binding Path = IdadressesNavigation.PostalCode}" Header="Индекс почты"/>
-                            <GridViewColumn DisplayMemberBinding="{Binding Path = IdadressesNavigation.TypeSettlement}" Header="Субъект"/>
+                            <GridViewColumn DisplayMemberBinding="{Binding Path = IdadressesNavigation.TypeSubject}" Header="Субъект"/>
                             <GridViewColumn DisplayMemberBinding="{Binding Path = IdadressesNavigation.NameSubject}" Header="название субъекта"/>
                             <GridViewColumn DisplayMemberBinding="{Binding Path = IdadressesNavigation.TypeLocality}" Header="Тип населенный пунк"/>
                             <GridViewColumn DisplayMemberBinding="{Binding Path = IdadressesNavigation.Locality}" Header="Населенный пункт"/>

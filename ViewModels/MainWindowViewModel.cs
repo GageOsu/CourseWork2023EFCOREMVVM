@@ -102,6 +102,22 @@ namespace CourseWork.ViewModels
         }
         #endregion
 
+        #region 
+        private LambdaCommand? _openCreatePatientWindowCommand;
+        public ICommand OpenCreatePatientCommand => _openCreatePatientWindowCommand ??= new(_onOpenCreatePatientWindowCommandExecuted);
+        private void _onOpenCreatePatientWindowCommandExecuted()
+        {
+            _workUser.OpenCreatePatientWindow();
+        }
+
+        private LambdaCommand? _openUpdatePatientWindowCommand;
+        public ICommand OpenUpdatePatientCommand => _openUpdatePatientWindowCommand ??= new(_onOpenUpdatePatientWindowCommandExecuted);
+        private void _onOpenUpdatePatientWindowCommandExecuted()
+        {
+            _workUser.OpenUpdatePatientWindow();
+        }
+        #endregion
+
         #endregion
 
 
@@ -137,6 +153,10 @@ namespace CourseWork.ViewModels
             if (SelectedTabItem.Name == "CategoriesTab" && SelectedCategories != null)
             {
                 _onOpenUpdateCategoriesWindowCommandExecuted();
+            }
+            if (SelectedTabItem.Name == "PatientsTab" && SelectedPatients != null)
+            {
+                _onOpenUpdatePatientWindowCommandExecuted();
             }
         }
         #endregion

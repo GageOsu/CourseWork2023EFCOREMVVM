@@ -24,11 +24,11 @@
             <TextBlock Text="Почтовый индекс"/>
             <TextBox Text="{Binding PostalCode}"/>
             <TextBlock Text="Тип субъекта"/>
-            <ComboBox ItemsSource="{Binding TypeSubject}" SelectedItem="TypeSubjectString"/>
+            <ComboBox ItemsSource="{Binding TypeSubject}" SelectedValue="{Binding TypeSubjectString}"/>
             <TextBlock Text="Имя субъекта"/>
             <TextBox Text="{Binding NameSubject}"/>
             <TextBlock Text="Тип населенного пункта"/>
-            <ComboBox ItemsSource="{Binding TypeLocality}" SelectedItem="TypeLocalityString"/>
+            <ComboBox ItemsSource="{Binding TypeLocality}" SelectedValue="{Binding TypeLocalityString}"/>
             <TextBlock Text="населенный пункт"/>
             <TextBox Text="{Binding Locality}"/>
             <TextBlock Text="Тип поселка"/>
@@ -61,7 +61,7 @@
             <TextBlock Text="Дата рождения"/>
             <DatePicker SelectedDate="{Binding DateBrith}"/>
             <TextBlock Text="Пол"/>
-            <ComboBox ItemsSource="{Binding Sex}" SelectedItem="SexString"/>
+            <ComboBox ItemsSource="{Binding Sex}" SelectedValue="{Binding SexString}"/>
             <TextBlock Text="Номер паспорта"/>
             <TextBox Text="{Binding PassportHumber}"/>
             <TextBlock Text="Номер снилса"/>

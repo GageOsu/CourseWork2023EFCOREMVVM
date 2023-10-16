@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 
 namespace CourseWork.Models.Table;
 
@@ -36,8 +37,10 @@ public partial class StomatologicClinicContext : DbContext
     public virtual DbSet<TypeService> TypeServices { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Server=GAGEOSULAPTOP;Database=StomatologicClinic; Trusted_Connection=true; Encrypt=False");
+    {
+        optionsBuilder.UseSqlServer("Server=GAGEOSULAPTOP;Database=StomatologicClinic; Trusted_Connection=true; Encrypt=False");
+        optionsBuilder.LogTo(Console.WriteLine);
+    }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

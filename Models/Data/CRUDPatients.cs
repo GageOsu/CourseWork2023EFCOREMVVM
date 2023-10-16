@@ -1,5 +1,6 @@
 ﻿using CourseWork.Models.Table;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -71,12 +72,15 @@ namespace CourseWork.Models.Data
                         Sex = sex,
                         PhoneNumber = phoneNumber,
                     };
+                    db.Patients.Add(newPatient);
+                    db.SaveChanges();
 
                 }
                 result = true;
             }
             catch (Exception)
             {
+
                 MessageBox.Show("Ошибка при создание записи");
                 result = false;
             }
