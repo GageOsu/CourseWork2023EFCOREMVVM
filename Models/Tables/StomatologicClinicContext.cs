@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
 
-namespace CourseWork.Models.Table;
+namespace CourseWork.Models.Tables;
 
 public partial class StomatologicClinicContext : DbContext
 {
@@ -37,10 +36,8 @@ public partial class StomatologicClinicContext : DbContext
     public virtual DbSet<TypeService> TypeServices { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    {
-        optionsBuilder.UseSqlServer("Server=GAGEOSULAPTOP;Database=StomatologicClinic; Trusted_Connection=true; Encrypt=False");
-        optionsBuilder.LogTo(Console.WriteLine);
-    }
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+        => optionsBuilder.UseSqlServer("Server=GAGEOSULAPTOP;Database=StomatologicClinic;Trusted_Connection=True;Encrypt=False;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -155,9 +152,7 @@ public partial class StomatologicClinicContext : DbContext
 
             entity.HasIndex(e => e.PhoneNumber, "UQ_Patient_PhoneNumber").IsUnique();
 
-            entity.Property(e => e.Idpatient)
-                .ValueGeneratedNever()
-                .HasColumnName("IDPatient");
+            entity.Property(e => e.Idpatient).HasColumnName("IDPatient");
             entity.Property(e => e.DateBrith).HasColumnType("date");
             entity.Property(e => e.Idadresses).HasColumnName("IDAdresses");
             entity.Property(e => e.IdinsurancePolicy).HasColumnName("IDInsurancePolicy");

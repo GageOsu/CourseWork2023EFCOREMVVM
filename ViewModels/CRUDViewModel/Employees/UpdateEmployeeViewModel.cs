@@ -1,6 +1,6 @@
 ﻿using CourseWork.Infrastructure.Commands;
 using CourseWork.Models.Data;
-using CourseWork.Models.Table;
+using CourseWork.Models.Tables;
 using CourseWork.ViewModels.Base;
 using System;
 using System.Collections.Generic;

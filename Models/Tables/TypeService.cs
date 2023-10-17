@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace CourseWork.Models.Table;
+namespace CourseWork.Models.Tables;
 
 public partial class TypeService
 {

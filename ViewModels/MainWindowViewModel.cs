@@ -1,7 +1,7 @@
 ﻿using CourseWork.Infrastructure.Commands;
 using CourseWork.Models;
 using CourseWork.Models.Data;
-using CourseWork.Models.Table;
+using CourseWork.Models.Tables;
 using CourseWork.Services;
 using CourseWork.ViewModels.Base;
 using System;
@@ -136,6 +136,11 @@ namespace CourseWork.ViewModels
             {
                 _CRUDCategories.DeleteCategory(SelectedCategories);
                 Catigories = _CRUDCategories.ReadCatigories();
+            }
+            if(SelectedTabItem.Name == "PatientsTab" && SelectedPatients != null)
+            {
+                _CRUDPatients.DeletePatient(SelectedPatients);
+                Patients = _CRUDPatients.ReadPatient();
             }
         }
         #endregion

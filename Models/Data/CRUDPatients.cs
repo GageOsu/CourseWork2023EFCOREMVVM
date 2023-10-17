@@ -1,4 +1,4 @@
-﻿using CourseWork.Models.Table;
+﻿using CourseWork.Models.Tables;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
@@ -30,8 +30,8 @@ namespace CourseWork.Models.Data
             string name, string middleName, DateTime dateBrith,string sex, string phoneNumber)
         {
             bool result = false;
-            try
-            {
+
+            
                 using (StomatologicClinicContext db = new StomatologicClinicContext())
                 {
                     InsurancePolicy newInsurancePolicy = new InsurancePolicy
@@ -75,26 +75,41 @@ namespace CourseWork.Models.Data
                     db.Patients.Add(newPatient);
                     db.SaveChanges();
 
-                }
                 result = true;
-            }
-            catch (Exception)
-            {
-
-                MessageBox.Show("Ошибка при создание записи");
-                result = false;
             }
             return result;
         }
 
 
-        public static bool UpdatePatient(Patient newPatient, InsurancePolicy newInsurancePolicy, Address newAdress)
+        public  bool UpdatePatient(Patient newPatient)
         {
             bool result = false;
             using (StomatologicClinicContext db = new StomatologicClinicContext())
             {
                 try
                 {
+
+                    InsurancePolicy oldInsurancePolicy = db.InsurancePolicies.FirstOrDefault(p => p.IdinsurancePolicy == newPatient.IdinsurancePolicy);
+                    {
+                        oldInsurancePolicy.NameInsuranceCompany = newPatient.IdinsurancePolicyNavigation.NameInsuranceCompany;
+                        oldInsurancePolicy.MhipolicyNumber = newPatient.IdinsurancePolicyNavigation.MhipolicyNumber;
+                        db.SaveChanges();
+                    }
+                    Address oldAdress = db.Addresses.FirstOrDefault(p => p.Idadresses == newPatient.Idadresses);
+                    {
+                        oldAdress.PostalCode = newPatient.IdadressesNavigation.PostalCode;
+                        oldAdress.TypeSubject = newPatient.IdadressesNavigation.TypeSubject;
+                        oldAdress.NameSubject = newPatient.IdadressesNavigation.NameSubject;
+                        oldAdress.TypeLocality = newPatient.IdadressesNavigation.TypeLocality;
+                        oldAdress.Locality = newPatient.IdadressesNavigation.Locality;
+                        oldAdress.TypeSettlement = newPatient.IdadressesNavigation.TypeSettlement;
+                        oldAdress.Settlement = newPatient.IdadressesNavigation.Settlement;
+                        oldAdress.TypeLocality = newPatient.IdadressesNavigation.TypeLocality;
+                        oldAdress.Location = newPatient.IdadressesNavigation.Location;
+                        oldAdress.HouseNumber = newPatient.IdadressesNavigation.HouseNumber;
+                        oldAdress.Structure = newPatient.IdadressesNavigation.Structure;
+                        oldAdress.Building = newPatient.IdadressesNavigation.Building;
+                        oldAdress.Flat = newPatient.IdadressesNavigation.Flat;
 
                     Patient OldPatient = db.Patients.FirstOrDefault(p => p.Idpatient == newPatient.Idpatient);
                     {
@@ -108,27 +123,6 @@ namespace CourseWork.Models.Data
                         OldPatient.PhoneNumber = newPatient.PhoneNumber;
                         db.SaveChanges();
                     }
-                    InsurancePolicy oldInsurancePolicy = db.InsurancePolicies.FirstOrDefault(p => p.IdinsurancePolicy == newPatient.IdinsurancePolicy);
-                    {
-                        oldInsurancePolicy.NameInsuranceCompany = newInsurancePolicy.NameInsuranceCompany;
-                        oldInsurancePolicy.MhipolicyNumber = newInsurancePolicy.MhipolicyNumber;
-                        db.SaveChanges();
-                    }
-                    Address oldAdress = db.Addresses.FirstOrDefault(p => p.Idadresses == newPatient.Idadresses);
-                    {
-                        oldAdress.PostalCode = newAdress.PostalCode;
-                        oldAdress.TypeSubject = newAdress.TypeSubject;
-                        oldAdress.NameSubject = newAdress.NameSubject;
-                        oldAdress.TypeLocality = newAdress.TypeLocality;
-                        oldAdress.Locality = newAdress.Locality;
-                        oldAdress.TypeSettlement = newAdress.TypeSettlement;
-                        oldAdress.Settlement = newAdress.Settlement;
-                        oldAdress.TypeLocality = newAdress.TypeLocality;
-                        oldAdress.Location = newAdress.Location;
-                        oldAdress.HouseNumber = newAdress.HouseNumber;
-                        oldAdress.Structure = newAdress.Structure;
-                        oldAdress.Building = newAdress.Building;
-                        oldAdress.Flat = newAdress.Flat;
                     }
                     result = true;
                 }
@@ -141,7 +135,7 @@ namespace CourseWork.Models.Data
             return result;
         }
 
-        public static bool DeleteEmployee(Patient patient)
+        public  bool DeletePatient(Patient patient)
         {
             bool result = false;
             using (StomatologicClinicContext db = new StomatologicClinicContext())
