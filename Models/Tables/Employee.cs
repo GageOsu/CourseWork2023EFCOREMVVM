@@ -19,5 +19,5 @@ public partial class Employee
 
     public virtual Position? IdpositionNavigation { get; set; }
 
-    public virtual RegistrationService? RegistrationService { get; set; }
+    public virtual ICollection<RegistrationService> RegistrationServices { get; set; } = new List<RegistrationService>();
 }

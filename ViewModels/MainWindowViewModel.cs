@@ -23,12 +23,14 @@ namespace CourseWork.ViewModels
         CRUDPositions _CRUDPositions = new CRUDPositions();
         CRUDTypeService _CRUDTypeService = new CRUDTypeService();
         CRUDServicePriceHistories _CRUDServicePriceHistories = new CRUDServicePriceHistories();
+        CRUDRegistrationServices _CRUDRegistrationServices = new CRUDRegistrationServices();
         private ObservableCollection<ServicePriceHistory> _servicePriceHistories;
         private ObservableCollection<Employee> _employees;
         private ObservableCollection<Category> _categories;
         private ObservableCollection<Patient> _petients; 
         private ObservableCollection<Position> _positions;
         private ObservableCollection<TypeService> _typeService;
+        private ObservableCollection<RegistrationService> _registrationServices;
         public ObservableCollection<Employee> Employees 
         {
             get => _employees;
@@ -61,6 +63,11 @@ namespace CourseWork.ViewModels
             set => Set(ref _servicePriceHistories, value);
         }
 
+        public ObservableCollection<RegistrationService> RegistrationServices
+        {
+            get => _registrationServices;
+            set => Set(ref _registrationServices, value);
+        }
 
         #region Выбор нужной строки
         public TabItem SelectedTabItem { get; set; }
@@ -266,6 +273,7 @@ namespace CourseWork.ViewModels
             Positions = new ObservableCollection<Position>(_CRUDPositions.ReadPositions());
             TypeServices = new ObservableCollection<TypeService>(_CRUDTypeService.ReadTypeServices());
             ServicePriceHistories = new ObservableCollection<ServicePriceHistory>(_CRUDServicePriceHistories.ReadServicePriceHistories());
+            RegistrationServices = new ObservableCollection<RegistrationService>(_CRUDRegistrationServices.ReadRegistrationServices());
             SelectedEmployees = new Employee();
             SelectedCategories = new Category();
             SelectedPosition = new Position();

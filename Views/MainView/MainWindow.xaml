@@ -149,6 +149,41 @@
                 </ListView>
             </TabItem>
 
+
+            <TabItem Name="RegistrationServiceTab">
+                <TabItem.Header>
+                    <TextBlock Text="Регистрация"/>
+                </TabItem.Header>
+                <TabItem.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Редактирова" Command="{Binding UpdateItem}"/>
+                        <MenuItem Header="Удалить" Command="{Binding DeleteItem}"/>
+                    </ContextMenu>
+                </TabItem.ContextMenu>
+                <ListView x:Name="RegistrationService" ItemsSource="{Binding RegistrationServices}"
+                          SelectedItem="{Binding SelectedPosition}">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn DisplayMemberBinding="{Binding Path = IdemployeeNavigation.SurnameEmployee}" Header="Фамилия врача"/>
+                            <GridViewColumn DisplayMemberBinding="{Binding Path = IdemployeeNavigation.NameEmployee}" Header="Имя врача"/>
+                            <GridViewColumn DisplayMemberBinding="{Binding Path = IdemployeeNavigation.MiddleNameEmployee}" Header="Отчество врача"/>
+                            <GridViewColumn DisplayMemberBinding="{Binding Path = IdemployeeNavigation.IdpositionNavigation.Position1}" Header="Должность врача"/>
+                            <GridViewColumn DisplayMemberBinding="{Binding Path = IdpatientNavigation.Surname}" Header="Фамилия пациента"/>
+                            <GridViewColumn DisplayMemberBinding="{Binding Path = IdpatientNavigation.Name}" Header="Имя пациента"/>
+                            <GridViewColumn DisplayMemberBinding="{Binding Path = IdpatientNavigation.MiddleName}" Header="Отчество пациента"/>
+                            <GridViewColumn DisplayMemberBinding="{Binding Path = IdpatientNavigation.PassportNumber}" Header="Номер паспорта"/>
+                            <GridViewColumn DisplayMemberBinding="{Binding Path = IdserviceNavigation.NameService}" Header="Услуга"/>
+                            <GridViewColumn DisplayMemberBinding="{Binding Path = IdserviceNavigation.PriceService}" Header="Цена"/>
+                            <GridViewColumn DisplayMemberBinding="{Binding Path = CountServices}" Header="Количество"/>
+                            <GridViewColumn DisplayMemberBinding="{Binding Path = Price}" Header="Итог"/>
+                            <GridViewColumn DisplayMemberBinding="{Binding Path = DateRegistration}" Header="Дата регистрации"/>
+                            <GridViewColumn DisplayMemberBinding="{Binding Path = DateOfService}" Header="Дата проведения"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </TabItem>
+
+
             <TabItem Name="ServicePriceHistoriesTab">
                 <TabItem.Header>
                     <TextBlock Text="История цен"/>
@@ -159,8 +194,7 @@
                         <MenuItem Header="Удалить" Command="{Binding DeleteItem}"/>
                     </ContextMenu>
                 </TabItem.ContextMenu>
-                <ListView x:Name="ServicePriceHistories" ItemsSource="{Binding ServicePriceHistories}"
-                          SelectedItem="{Binding SelectedPosition}">
+                <ListView x:Name="ServicePriceHistories" ItemsSource="{Binding ServicePriceHistories}">
                     <ListView.View>
                         <GridView>
                             <GridViewColumn DisplayMemberBinding="{Binding Path=IdserviceNavigation.NameService}" Header="Старая цена"/>

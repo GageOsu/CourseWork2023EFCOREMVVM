@@ -198,11 +198,9 @@ public partial class StomatologicClinicContext : DbContext
 
         modelBuilder.Entity<RegistrationService>(entity =>
         {
-            entity.HasKey(e => e.IdserviceRegistration).HasName("PK_RegistrationServices_ID");
+            entity.HasKey(e => e.IdserviceRegistration);
 
-            entity.Property(e => e.IdserviceRegistration)
-                .ValueGeneratedNever()
-                .HasColumnName("IDServiceRegistration");
+            entity.Property(e => e.IdserviceRegistration).HasColumnName("IDServiceRegistration");
             entity.Property(e => e.DateOfService).HasColumnType("date");
             entity.Property(e => e.DateRegistration)
                 .HasDefaultValueSql("(getdate())")
@@ -212,18 +210,20 @@ public partial class StomatologicClinicContext : DbContext
             entity.Property(e => e.Idservice).HasColumnName("IDService");
             entity.Property(e => e.Price).HasColumnType("money");
 
+            entity.HasOne(d => d.IdemployeeNavigation).WithMany(p => p.RegistrationServices)
+                .HasForeignKey(d => d.Idemployee)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_RegistrationServices_Employees");
+
             entity.HasOne(d => d.IdpatientNavigation).WithMany(p => p.RegistrationServices)
                 .HasForeignKey(d => d.Idpatient)
+                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_RegistrationServices_Patients");
 
             entity.HasOne(d => d.IdserviceNavigation).WithMany(p => p.RegistrationServices)
                 .HasForeignKey(d => d.Idservice)
-                .HasConstraintName("FK_RegistrationServices_TypeServices");
-
-            entity.HasOne(d => d.IdserviceRegistrationNavigation).WithOne(p => p.RegistrationService)
-                .HasForeignKey<RegistrationService>(d => d.IdserviceRegistration)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_RegistrationServices_Employees");
+                .HasConstraintName("FK_RegistrationServices_TypeServices");
         });
 
         modelBuilder.Entity<ServicePriceHistory>(entity =>
