@@ -8,6 +8,7 @@ namespace CourseWork.Services
 {
     internal interface IWorkUser
     {
+        void OpenAuthorizationWindow();
         void OpenMainWindow();
 
         void OpenCreateWindow();
@@ -29,5 +30,10 @@ namespace CourseWork.Services
         void OpenCreateTypeServiceWindow();
 
         void OpenUpdateTypeServiceWindow();
+
+        void OpenCreateRegistrationWindow();
+
+        void OpenUpdateRegistrationWindow();
+
     }
 }

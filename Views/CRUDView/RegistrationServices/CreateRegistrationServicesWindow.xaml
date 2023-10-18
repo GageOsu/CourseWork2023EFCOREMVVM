@@ -1,0 +1,35 @@
+﻿<Window x:Class="CourseWork.Views.CRUDView.RegistrationServices.CreateRegistrationServicesWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CourseWork.Views.CRUDView.RegistrationServices"
+        xmlns:vm="clr-namespace:CourseWork.ViewModels.CRUDViewModel.RegistrationServices"
+        mc:Ignorable="d"
+        d:DataContext="{d:DesignInstance vm:CreateRegistrationServicesViewModel,IsDesignTimeCreatable=True}"
+        Title="{Binding Title}" Height="350" Width="300">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Orientation="Vertical"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Width="200">
+            <TextBlock Text="Врач"/>
+            <ComboBox ItemsSource="{Binding Employees}" DisplayMemberPath="SurnameEmployee"  SelectedValue="{Binding Employee}"/>
+            <TextBlock Text="Пациент"/>
+            <ComboBox ItemsSource="{Binding Patients}" DisplayMemberPath="Surname"  SelectedValue="{Binding Patient}"/>
+            <TextBlock Text="Услуга"/>
+            <ComboBox ItemsSource="{Binding typeServices}" DisplayMemberPath="NameService"  SelectedValue="{Binding TypeService}"/>
+            <TextBlock Text="Количества"/>
+            <TextBox Text="{Binding CountServices}"/>
+            <TextBlock Text="Дата регистрации"/>
+            <DatePicker SelectedDate="{Binding DateRegistration}"/>
+            <TextBlock Text="Дата проведения"/>
+            <DatePicker SelectedDate="{Binding DateOfService}"/>
+        </StackPanel>
+        <Button Command="{Binding CreateRegistration}" Grid.Row="1" Content="Новая запись"/>
+    </Grid>
+</Window>

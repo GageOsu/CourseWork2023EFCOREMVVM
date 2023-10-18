@@ -1,0 +1,27 @@
+﻿<Window x:Class="CourseWork.Views.AuthorizationView.AuthorizationWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CourseWork.Views.AuthorizationView"
+        xmlns:vm="clr-namespace:CourseWork.ViewModels.AuthorizationViewModel"
+        mc:Ignorable="d"
+        d:DataContext="{d:DesignInstance vm:Authorization, IsDesignTimeCreatable=True}"
+        Title="{Binding Title}" Height="150" Width="300">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Label Grid.Row="0" Grid.Column="0" Content="Логин:"/>
+        <TextBox Text="{Binding Login}"  MaxLength="50" Grid.Row="0" Grid.Column="1"/>
+        <TextBox Text="{Binding Password}"  MaxLength="50"  Grid.Row="1" Grid.Column="1" Margin="0,0,0,20" Grid.RowSpan="2"/>
+        <Label Grid.Row="1" Grid.Column="0" Content="Пароль:"/>
+        <Button Command="{Binding OpenMainWindowCommandCommand}" Grid.Row="2" Grid.Column="1" Content="Войти"/>
+    </Grid>
+</Window>

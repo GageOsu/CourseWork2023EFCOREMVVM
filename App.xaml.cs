@@ -1,14 +1,18 @@
 ﻿using CourseWork.Services;
 using CourseWork.ViewModels;
+using CourseWork.ViewModels.AuthorizationViewModel;
 using CourseWork.ViewModels.CRUDViewModel.Categories;
 using CourseWork.ViewModels.CRUDViewModel.Employees;
 using CourseWork.ViewModels.CRUDViewModel.Patients;
 using CourseWork.ViewModels.CRUDViewModel.Positions;
+using CourseWork.ViewModels.CRUDViewModel.RegistrationServices;
 using CourseWork.ViewModels.CRUDViewModel.TypeService;
+using CourseWork.Views.AuthorizationView;
 using CourseWork.Views.CRUDView.Category;
 using CourseWork.Views.CRUDView.Employee;
 using CourseWork.Views.CRUDView.Patient;
 using CourseWork.Views.CRUDView.Position;
+using CourseWork.Views.CRUDView.RegistrationServices;
 using CourseWork.Views.CRUDView.TypeService;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -33,8 +37,8 @@ namespace CourseWork
         private static IServiceCollection InitializeServices()
         {
             var services = new ServiceCollection();
-
-            services.AddSingleton<MainWindowViewModel>();
+            services.AddTransient<Authorization>();
+            services.AddTransient<MainWindowViewModel>();
             services.AddTransient<CreateEmployeeViewModel>();
             services.AddTransient<UpdateEmployeeViewModel>();
             services.AddTransient<CreateCategoriesViewModel>();
@@ -45,17 +49,25 @@ namespace CourseWork
             services.AddTransient<UpdatePositionViewModel>();
             services.AddTransient<CreateTypeServiceViewModel>();
             services.AddTransient<UpdateTypeServiceViewModel>();
+            services.AddTransient<CreateRegistrationServicesViewModel>();
+            services.AddTransient<UpdateRegistrationServicesViewModel>();
 
             services.AddSingleton<IWorkUser, WorkUser>();
 
             services.AddTransient(
-                s => 
+                s =>
+                {
+                    var model = s.GetRequiredService<Authorization>();
+                    var window = new AuthorizationWindow { DataContext = model };
+                    return window;
+                });
+            services.AddTransient(
+                s =>
                 {
                     var model = s.GetRequiredService<MainWindowViewModel>();
                     var window = new MainWindow { DataContext = model };
                     return window;
                 });
-
             services.AddTransient(
                 s =>
                 {
@@ -126,7 +138,20 @@ namespace CourseWork
                   var window = new UpdateTypeServiceWindow { DataContext = model };
                   return window;
               });
-
+            services.AddTransient(
+                s =>
+                {
+                    var model = s.GetRequiredService<CreateRegistrationServicesViewModel>();
+                    var window = new CreateRegistrationServicesWindow { DataContext = model };
+                    return window;
+                });
+            services.AddTransient(
+                s =>
+                {
+                    var model = s.GetRequiredService<UpdateRegistrationServicesViewModel>();
+                    var window = new UpdateRegistrationServiceWindow { DataContext = model };
+                    return window;
+                });
 
             return services;
         }
@@ -135,7 +160,7 @@ namespace CourseWork
         {
             base.OnStartup(e);
 
-            Services.GetRequiredService<IWorkUser>().OpenMainWindow();
+            Services.GetRequiredService<IWorkUser>().OpenAuthorizationWindow();
         }
     }
 }

@@ -1,8 +1,10 @@
 ﻿using CourseWork.ViewModels.CRUDViewModel.Categories;
+using CourseWork.Views.AuthorizationView;
 using CourseWork.Views.CRUDView.Category;
 using CourseWork.Views.CRUDView.Employee;
 using CourseWork.Views.CRUDView.Patient;
 using CourseWork.Views.CRUDView.Position;
+using CourseWork.Views.CRUDView.RegistrationServices;
 using CourseWork.Views.CRUDView.TypeService;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -19,6 +21,20 @@ namespace CourseWork.Services
         private readonly IServiceProvider _services;
         public WorkUser(IServiceProvider Service) => _services = Service;
 
+        private AuthorizationWindow _authorizationWindow;
+        public void OpenAuthorizationWindow()
+        {
+            if (_authorizationWindow is { } window) 
+            { 
+                window.Show();
+                return;
+            }
+            window = _services.GetRequiredService<AuthorizationWindow>();
+            window.Closed += (_, _) => _authorizationWindow = null;
+
+            _authorizationWindow = window;
+            window.Show();
+        }
 
         private MainWindow? _mainWindow;
         public void OpenMainWindow()
@@ -186,6 +202,36 @@ namespace CourseWork.Services
             window = _services.GetRequiredService<UpdateTypeServiceWindow>();
             window.Closed += (_, _) => updateTypeServiceWindow = null;
             updateTypeServiceWindow = window;
+            window.Show();
+        }
+
+        private CreateRegistrationServicesWindow createRegistrationServicesWindow;
+        public void OpenCreateRegistrationWindow()
+        {
+            if (createRegistrationServicesWindow is { } window)
+            {
+                window.Show();
+                return;
+            }
+
+            window = _services.GetRequiredService<CreateRegistrationServicesWindow>();
+            window.Closed += (_, _) => createRegistrationServicesWindow = null;
+            createRegistrationServicesWindow = window;
+            window.Show();
+        }
+
+        private UpdateRegistrationServiceWindow updateRegistrationServicesWindow;
+        public void OpenUpdateRegistrationWindow()
+        {
+            if (updateRegistrationServicesWindow is { } window)
+            {
+                window.Show();
+                return;
+            }
+
+            window = _services.GetRequiredService<UpdateRegistrationServiceWindow>();
+            window.Closed += (_, _) => updateRegistrationServicesWindow = null;
+            updateRegistrationServicesWindow = window;
             window.Show();
         }
     }

@@ -106,6 +106,12 @@ namespace CourseWork.ViewModels
             get => _selectedTypeService;
             set => _selectedTypeService = value;
         }
+        private static RegistrationService _selectedRegistrationService;
+        public static RegistrationService SelectedRegistrationService
+        {
+            get => _selectedRegistrationService;
+            set => _selectedRegistrationService = value;
+        }
 
         #endregion
 
@@ -186,6 +192,20 @@ namespace CourseWork.ViewModels
         {
             _workUser.OpenUpdateTypeServiceWindow();
         }
+
+        private LambdaCommand? _onOpenCreateRegistrationWindowCommand;
+        public ICommand OpenCreateRegistrationWindowCommandCommand => _onOpenCreateRegistrationWindowCommand ??= new(_onOpenCreateRegistrationWindowCommandCommandExecuted);
+        private void _onOpenCreateRegistrationWindowCommandCommandExecuted()
+        {
+            _workUser.OpenCreateRegistrationWindow();
+        }
+
+        private LambdaCommand? _onOpenUpdateRegistrationWindowCommand;
+        public ICommand OpenUpdateRegistrationWindowCommandCommand => _onOpenUpdateRegistrationWindowCommand ??= new(_onOpenUpdateRegistrationWindowCommandCommandExecuted);
+        private void _onOpenUpdateRegistrationWindowCommandCommandExecuted()
+        {
+            _workUser.OpenUpdateRegistrationWindow();
+        }
         #endregion
 
         #endregion
@@ -222,6 +242,11 @@ namespace CourseWork.ViewModels
                 _CRUDTypeService.DeleteTypeService(SelectedTypeService);
                 TypeServices = _CRUDTypeService.ReadTypeServices();
             }
+            if (SelectedTabItem.Name == "RegistrationServiceTab" && SelectedRegistrationService != null)
+            {
+                _CRUDRegistrationServices.DeleteRegistrationServices(SelectedRegistrationService);
+                RegistrationServices = _CRUDRegistrationServices.ReadRegistrationServices();
+            }
         }
         #endregion
 
@@ -251,10 +276,25 @@ namespace CourseWork.ViewModels
             {
                 _onOpenUpdateTypeServiceWindowCommandExecuted();
             }
+            if (SelectedTabItem.Name == "RegistrationServiceTab" && SelectedRegistrationService != null)
+            {
+                _onOpenUpdateRegistrationWindowCommandCommandExecuted();
+            }
         }
         #endregion
 
-
+        private LambdaCommand? _onLoadAllCommand;
+        public ICommand LoadAllCommand => _onLoadAllCommand ??= new(_onLoadAllCommandExecuted);
+        private void _onLoadAllCommandExecuted()
+        {
+            Employees = new ObservableCollection<Employee>(CRUDEmployees.ReadEmployes());
+            Catigories = new ObservableCollection<Category>(_CRUDCategories.ReadCatigories());
+            Patients = new ObservableCollection<Patient>(_CRUDPatients.ReadPatient());
+            Positions = new ObservableCollection<Position>(_CRUDPositions.ReadPositions());
+            TypeServices = new ObservableCollection<TypeService>(_CRUDTypeService.ReadTypeServices());
+            ServicePriceHistories = new ObservableCollection<ServicePriceHistory>(_CRUDServicePriceHistories.ReadServicePriceHistories());
+            RegistrationServices = new ObservableCollection<RegistrationService>(_CRUDRegistrationServices.ReadRegistrationServices());
+        }
 
 
         private readonly IWorkUser _workUser;
@@ -278,6 +318,7 @@ namespace CourseWork.ViewModels
             SelectedCategories = new Category();
             SelectedPosition = new Position();
             SelectedTypeService = new TypeService();
+            SelectedRegistrationService = new RegistrationService();
         }
 
     }
