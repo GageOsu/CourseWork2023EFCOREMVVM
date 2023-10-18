@@ -149,6 +149,29 @@
                 </ListView>
             </TabItem>
 
+            <TabItem Name="ServicePriceHistoriesTab">
+                <TabItem.Header>
+                    <TextBlock Text="История цен"/>
+                </TabItem.Header>
+                <TabItem.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Редактирова" Command="{Binding UpdateItem}"/>
+                        <MenuItem Header="Удалить" Command="{Binding DeleteItem}"/>
+                    </ContextMenu>
+                </TabItem.ContextMenu>
+                <ListView x:Name="ServicePriceHistories" ItemsSource="{Binding ServicePriceHistories}"
+                          SelectedItem="{Binding SelectedPosition}">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn DisplayMemberBinding="{Binding Path=IdserviceNavigation.NameService}" Header="Старая цена"/>
+                            <GridViewColumn DisplayMemberBinding="{Binding Path=OldPrice}" Header="Старая цена"/>
+                            <GridViewColumn DisplayMemberBinding="{Binding Path=NewPrice}" Header="Новая цена"/>
+                            <GridViewColumn DisplayMemberBinding="{Binding Path=DatePriceChange}" Header="Дата изменения"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </TabItem>
+
 
         </TabControl>
     </Grid>

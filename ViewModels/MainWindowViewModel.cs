@@ -22,6 +22,8 @@ namespace CourseWork.ViewModels
         CRUDPatients _CRUDPatients = new CRUDPatients();
         CRUDPositions _CRUDPositions = new CRUDPositions();
         CRUDTypeService _CRUDTypeService = new CRUDTypeService();
+        CRUDServicePriceHistories _CRUDServicePriceHistories = new CRUDServicePriceHistories();
+        private ObservableCollection<ServicePriceHistory> _servicePriceHistories;
         private ObservableCollection<Employee> _employees;
         private ObservableCollection<Category> _categories;
         private ObservableCollection<Patient> _petients; 
@@ -52,6 +54,11 @@ namespace CourseWork.ViewModels
         {
             get => _typeService;
             set => Set(ref _typeService, value);
+        }
+        public ObservableCollection<ServicePriceHistory> ServicePriceHistories
+        {
+            get => _servicePriceHistories;
+            set => Set(ref _servicePriceHistories, value);
         }
 
 
@@ -258,6 +265,7 @@ namespace CourseWork.ViewModels
             Patients = new ObservableCollection<Patient>(_CRUDPatients.ReadPatient());
             Positions = new ObservableCollection<Position>(_CRUDPositions.ReadPositions());
             TypeServices = new ObservableCollection<TypeService>(_CRUDTypeService.ReadTypeServices());
+            ServicePriceHistories = new ObservableCollection<ServicePriceHistory>(_CRUDServicePriceHistories.ReadServicePriceHistories());
             SelectedEmployees = new Employee();
             SelectedCategories = new Category();
             SelectedPosition = new Position();
