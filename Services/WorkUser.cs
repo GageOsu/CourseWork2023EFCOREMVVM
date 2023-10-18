@@ -2,6 +2,8 @@
 using CourseWork.Views.CRUDView.Category;
 using CourseWork.Views.CRUDView.Employee;
 using CourseWork.Views.CRUDView.Patient;
+using CourseWork.Views.CRUDView.Position;
+using CourseWork.Views.CRUDView.TypeService;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -125,6 +127,65 @@ namespace CourseWork.Services
             window = _services.GetRequiredService<UpdatePatientWindow>();
             window.Closed += (_, _) => updatePatientWindow = null;
             updatePatientWindow = window;
+            window.Show();
+        }
+
+        private CreatePositionWindow? createPositionWindow;
+        public void OpenCreatePositionWindow()
+        {
+            if (createPositionWindow is { } window)
+            {
+                window.Show();
+                return;
+            }
+
+            window = _services.GetRequiredService<CreatePositionWindow>();
+            window.Closed += (_, _) => updatePatientWindow = null;
+            createPositionWindow = window;
+            window.Show();
+        }
+
+        private UpdatePositionWindow? updatePositionWindow;
+        public void OpenUpdatePositionWindow()
+        {
+            if(updatePositionWindow is { } window)
+            {
+                window.Show();
+                return;
+            }
+            window = _services.GetRequiredService<UpdatePositionWindow>();
+            window.Closed -= (_, _) => updatePositionWindow = null; 
+            updatePositionWindow = window;
+            window.Show();
+        }
+
+        private CreateTypeServicesWindow? createTypeServicesWindow;
+        public void OpenCreateTypeServiceWindow()
+        {
+            if(createTypeServicesWindow is { } window)
+            {
+                window.Show();
+                return;
+            }
+
+            window = _services.GetRequiredService<CreateTypeServicesWindow>();
+            window.Closed += (_, _) => createTypeServicesWindow = null;
+            createTypeServicesWindow = window;
+            window.Show();
+        }
+
+        private UpdateTypeServiceWindow updateTypeServiceWindow;
+        public void OpenUpdateTypeServiceWindow()
+        {
+            if (updateTypeServiceWindow is { } window)
+            {
+                window.Show();
+                return;
+            }
+
+            window = _services.GetRequiredService<UpdateTypeServiceWindow>();
+            window.Closed += (_, _) => updateTypeServiceWindow = null;
+            updateTypeServiceWindow = window;
             window.Show();
         }
     }

@@ -17,7 +17,7 @@ namespace CourseWork.Models.Data
         {
             using (StomatologicClinicContext db = new StomatologicClinicContext())
             {
-                var typeServices = new ObservableCollection<TypeService>(db.TypeServices.Include(u => u.IdcategoryNavigation.Category1));
+                var typeServices = new ObservableCollection<TypeService>(db.TypeServices.ToList());
                 return typeServices;
             }
         }
@@ -49,7 +49,7 @@ namespace CourseWork.Models.Data
             return result;
         }
 
-        public static bool UpdateTypeService(TypeService newTypeSevice)
+        public  bool UpdateTypeService(TypeService newTypeSevice)
         {
             bool result = false;
             using (StomatologicClinicContext db = new StomatologicClinicContext())
@@ -66,7 +66,7 @@ namespace CourseWork.Models.Data
             return result;
         }
 
-        public static bool DeleteTypeService(TypeService typeService)
+        public  bool DeleteTypeService(TypeService typeService)
         {
             bool result = false;
             using (StomatologicClinicContext db = new StomatologicClinicContext())

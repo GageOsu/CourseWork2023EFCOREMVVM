@@ -15,6 +15,8 @@
                     <MenuItem Header="Новый Сотрудник" Command="{Binding OpenCreateWindowCommand}"/>
                     <MenuItem Header="Новая Категория" Command="{Binding OpenCreateCategoriesWindowCommand}"/>
                     <MenuItem Header="Новый Пациент" Command="{Binding OpenCreatePatientCommand}"/>
+                    <MenuItem Header="Новая Должность" Command="{Binding OpenCreatePositionWindowCommand}"/>
+                    <MenuItem Header="Новая Услугая" Command="{Binding OpenCreateTypeServiceWindowCommand}"/>
                 </MenuItem>
                 <Separator/>
                 <MenuItem Header="Exit" ></MenuItem>
@@ -39,26 +41,6 @@
                             <GridViewColumn DisplayMemberBinding="{Binding Path=NameEmployee}" Header="Имя"/>
                             <GridViewColumn DisplayMemberBinding="{Binding Path= MiddleNameEmployee}" Header="Отчество"/>
                             <GridViewColumn DisplayMemberBinding="{Binding Path= IdpositionNavigation.Position1}" Header="Должность"/>
-                        </GridView>
-                    </ListView.View>
-                </ListView>
-            </TabItem>
-
-            <TabItem Name="CategoriesTab">
-                <TabItem.Header>
-                    <TextBlock Text="Категории"/>
-                </TabItem.Header>
-                <TabItem.ContextMenu>
-                    <ContextMenu>
-                        <MenuItem Header="Редактирова" Command="{Binding UpdateItem}"/>
-                        <MenuItem Header="Удалить" Command="{Binding DeleteItem}"/>
-                    </ContextMenu>
-                </TabItem.ContextMenu>
-                <ListView x:Name="Categories" ItemsSource="{Binding Catigories}"
-                          SelectedItem="{Binding SelectedCategories}">
-                    <ListView.View>
-                        <GridView>
-                            <GridViewColumn DisplayMemberBinding="{Binding Path=Category1}" Header="Категории услуг"/>
                         </GridView>
                     </ListView.View>
                 </ListView>
@@ -105,6 +87,68 @@
                     </ListView.View>
                 </ListView>
             </TabItem>
+
+            <TabItem Name="CategoriesTab">
+                <TabItem.Header>
+                    <TextBlock Text="Категории"/>
+                </TabItem.Header>
+                <TabItem.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Редактирова" Command="{Binding UpdateItem}"/>
+                        <MenuItem Header="Удалить" Command="{Binding DeleteItem}"/>
+                    </ContextMenu>
+                </TabItem.ContextMenu>
+                <ListView x:Name="Categories" ItemsSource="{Binding Catigories}"
+                          SelectedItem="{Binding SelectedCategories}">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn DisplayMemberBinding="{Binding Path=Category1}" Header="Категории услуг"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </TabItem>
+
+            <TabItem Name="TypeServicesTab">
+                <TabItem.Header>
+                    <TextBlock Text="Услуги"/>
+                </TabItem.Header>
+                <TabItem.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Редактирова" Command="{Binding UpdateItem}"/>
+                        <MenuItem Header="Удалить" Command="{Binding DeleteItem}"/>
+                    </ContextMenu>
+                </TabItem.ContextMenu>
+                <ListView x:Name="TypeServices" ItemsSource="{Binding TypeServices}"
+                          SelectedItem="{Binding SelectedTypeService}">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn DisplayMemberBinding="{Binding Path=NameService}" Header="Услуга"/>
+                            <GridViewColumn DisplayMemberBinding="{Binding Path=PriceService}" Header="Цена"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </TabItem>
+
+            <TabItem Name="PositionsTab">
+                <TabItem.Header>
+                    <TextBlock Text="Должность"/>
+                </TabItem.Header>
+                <TabItem.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Редактирова" Command="{Binding UpdateItem}"/>
+                        <MenuItem Header="Удалить" Command="{Binding DeleteItem}"/>
+                    </ContextMenu>
+                </TabItem.ContextMenu>
+                <ListView x:Name="Positions" ItemsSource="{Binding Positions}"
+                          SelectedItem="{Binding SelectedPosition}">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn DisplayMemberBinding="{Binding Path=Position1}" Header="Должности"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </TabItem>
+
 
         </TabControl>
     </Grid>

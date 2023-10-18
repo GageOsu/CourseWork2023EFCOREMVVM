@@ -20,9 +20,13 @@ namespace CourseWork.ViewModels
         CRUDEmployees CRUDEmployees = new CRUDEmployees();
         CRUDCategories _CRUDCategories = new CRUDCategories();
         CRUDPatients _CRUDPatients = new CRUDPatients();
+        CRUDPositions _CRUDPositions = new CRUDPositions();
+        CRUDTypeService _CRUDTypeService = new CRUDTypeService();
         private ObservableCollection<Employee> _employees;
         private ObservableCollection<Category> _categories;
         private ObservableCollection<Patient> _petients; 
+        private ObservableCollection<Position> _positions;
+        private ObservableCollection<TypeService> _typeService;
         public ObservableCollection<Employee> Employees 
         {
             get => _employees;
@@ -38,6 +42,16 @@ namespace CourseWork.ViewModels
         {
             get => _petients;
             set => Set(ref _petients, value);
+        }
+        public ObservableCollection<Position> Positions
+        {
+            get => _positions;
+            set => Set(ref _positions, value);
+        }
+        public ObservableCollection<TypeService> TypeServices
+        {
+            get => _typeService;
+            set => Set(ref _typeService, value);
         }
 
 
@@ -63,6 +77,20 @@ namespace CourseWork.ViewModels
         {
             get => _selectedPatients;
             set => _selectedPatients = value;
+        }
+
+        private static Position _selectedPosition;
+        public static Position SelectedPosition
+        {
+            get => _selectedPosition;
+            set => _selectedPosition = value;
+        }
+
+        private static TypeService _selectedTypeService;
+        public static TypeService SelectedTypeService
+        {
+            get => _selectedTypeService;
+            set => _selectedTypeService = value;
         }
 
         #endregion
@@ -116,6 +144,34 @@ namespace CourseWork.ViewModels
         {
             _workUser.OpenUpdatePatientWindow();
         }
+
+        private LambdaCommand? _openCreatePositionWindowCommand;
+        public ICommand OpenCreatePositionWindowCommand => _openCreatePositionWindowCommand ??= new(_onOpenCreatePositionWindowCommandExecuted);
+        private void _onOpenCreatePositionWindowCommandExecuted()
+        {
+            _workUser.OpenCreatePositionWindow();
+        }
+
+        private LambdaCommand? _onOpenUpdatePositionWindowCommand;
+        public ICommand OpenUpdatePositionWindowCommand => _onOpenUpdatePositionWindowCommand ??= new(_onOpenUpdatePositionWindowCommandExecuted);
+        private void _onOpenUpdatePositionWindowCommandExecuted()
+        {
+            _workUser.OpenUpdatePositionWindow();
+        }
+
+        private LambdaCommand? _onOpenCreateTypeServiceWindowCommand;
+        public ICommand OpenCreateTypeServiceWindowCommand => _onOpenCreateTypeServiceWindowCommand ??= new(_onOpenCreateTypeServiceWindowCommandExecuted);
+        private void _onOpenCreateTypeServiceWindowCommandExecuted()
+        {
+            _workUser.OpenCreateTypeServiceWindow();
+        }
+
+        private LambdaCommand? _onOpenUpdateTypeServiceWindowCommand;
+        public ICommand OpenUpdateTypeServiceWindowCommand => _onOpenUpdateTypeServiceWindowCommand ??= new(_onOpenUpdateTypeServiceWindowCommandExecuted);
+        private void _onOpenUpdateTypeServiceWindowCommandExecuted()
+        {
+            _workUser.OpenUpdateTypeServiceWindow();
+        }
         #endregion
 
         #endregion
@@ -142,6 +198,16 @@ namespace CourseWork.ViewModels
                 _CRUDPatients.DeletePatient(SelectedPatients);
                 Patients = _CRUDPatients.ReadPatient();
             }
+            if(SelectedTabItem.Name == "PositionsTab" && SelectedPosition != null)
+            {
+                _CRUDPositions.DeletePosition(SelectedPosition);
+                Positions = _CRUDPositions.ReadPositions();
+            }
+            if (SelectedTabItem.Name == "TypeServicesTab" && SelectedTypeService != null)
+            {
+                _CRUDTypeService.DeleteTypeService(SelectedTypeService);
+                TypeServices = _CRUDTypeService.ReadTypeServices();
+            }
         }
         #endregion
 
@@ -163,6 +229,14 @@ namespace CourseWork.ViewModels
             {
                 _onOpenUpdatePatientWindowCommandExecuted();
             }
+            if (SelectedTabItem.Name == "PositionsTab" && SelectedPosition != null)
+            {
+                _onOpenUpdatePositionWindowCommandExecuted();
+            }
+            if (SelectedTabItem.Name == "TypeServicesTab" && SelectedTypeService != null)
+            {
+                _onOpenUpdateTypeServiceWindowCommandExecuted();
+            }
         }
         #endregion
 
@@ -182,8 +256,12 @@ namespace CourseWork.ViewModels
             Employees = new ObservableCollection<Employee>(CRUDEmployees.ReadEmployes());
             Catigories = new ObservableCollection<Category>(_CRUDCategories.ReadCatigories());
             Patients = new ObservableCollection<Patient>(_CRUDPatients.ReadPatient());
+            Positions = new ObservableCollection<Position>(_CRUDPositions.ReadPositions());
+            TypeServices = new ObservableCollection<TypeService>(_CRUDTypeService.ReadTypeServices());
             SelectedEmployees = new Employee();
             SelectedCategories = new Category();
+            SelectedPosition = new Position();
+            SelectedTypeService = new TypeService();
         }
 
     }

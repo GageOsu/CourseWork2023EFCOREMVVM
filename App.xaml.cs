@@ -3,9 +3,13 @@ using CourseWork.ViewModels;
 using CourseWork.ViewModels.CRUDViewModel.Categories;
 using CourseWork.ViewModels.CRUDViewModel.Employees;
 using CourseWork.ViewModels.CRUDViewModel.Patients;
+using CourseWork.ViewModels.CRUDViewModel.Positions;
+using CourseWork.ViewModels.CRUDViewModel.TypeService;
 using CourseWork.Views.CRUDView.Category;
 using CourseWork.Views.CRUDView.Employee;
 using CourseWork.Views.CRUDView.Patient;
+using CourseWork.Views.CRUDView.Position;
+using CourseWork.Views.CRUDView.TypeService;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -37,6 +41,10 @@ namespace CourseWork
             services.AddTransient<UpdateCategoriesViewModel>();
             services.AddTransient<CreatePatientViewModel>();
             services.AddTransient<UpdatePatientViewModel>();
+            services.AddTransient<CreatePositionViewModel>();
+            services.AddTransient<UpdatePositionViewModel>();
+            services.AddTransient<CreateTypeServiceViewModel>();
+            services.AddTransient<UpdateTypeServiceViewModel>();
 
             services.AddSingleton<IWorkUser, WorkUser>();
 
@@ -90,6 +98,34 @@ namespace CourseWork
                     var window = new UpdatePatientWindow { DataContext = model };
                     return window;
                 });
+            services.AddTransient(
+                s =>
+                {
+                    var model = s.GetRequiredService<CreatePositionViewModel>();
+                    var window = new CreatePositionWindow { DataContext = model };
+                    return window;
+                });
+            services.AddTransient(
+               s =>
+               {
+                   var model = s.GetRequiredService<UpdatePositionViewModel>();
+                   var window = new UpdatePositionWindow { DataContext = model };
+                   return window;
+               });
+            services.AddTransient(
+               s =>
+               {
+                   var model = s.GetRequiredService<CreateTypeServiceViewModel>();
+                   var window = new CreateTypeServicesWindow { DataContext = model };
+                   return window;
+               });
+            services.AddTransient(
+              s =>
+              {
+                  var model = s.GetRequiredService<UpdateTypeServiceViewModel>();
+                  var window = new UpdateTypeServiceWindow { DataContext = model };
+                  return window;
+              });
 
 
             return services;

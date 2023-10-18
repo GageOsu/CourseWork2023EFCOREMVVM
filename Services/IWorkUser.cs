@@ -21,5 +21,13 @@ namespace CourseWork.Services
         void OpenCreatePatientWindow();
 
         void OpenUpdatePatientWindow();
+
+        void OpenCreatePositionWindow();
+
+        void OpenUpdatePositionWindow();
+
+        void OpenCreateTypeServiceWindow();
+
+        void OpenUpdateTypeServiceWindow();
     }
 }

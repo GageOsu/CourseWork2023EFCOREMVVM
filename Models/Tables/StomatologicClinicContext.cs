@@ -37,7 +37,7 @@ public partial class StomatologicClinicContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Server=GAGEOSULAPTOP;Database=StomatologicClinic;Trusted_Connection=True;Encrypt=False;");
+        => optionsBuilder.UseSqlServer("Server=GAGEOSULAPTOP; Database=StomatologicClinic; Trusted_Connection=true; Encrypt=False");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -126,7 +126,6 @@ public partial class StomatologicClinicContext : DbContext
 
             entity.HasOne(d => d.IdpositionNavigation).WithMany(p => p.Employees)
                 .HasForeignKey(d => d.Idposition)
-                .OnDelete(DeleteBehavior.SetNull)
                 .HasConstraintName("FK_Employees_Positions1");
         });
 
@@ -176,10 +175,12 @@ public partial class StomatologicClinicContext : DbContext
 
             entity.HasOne(d => d.IdadressesNavigation).WithMany(p => p.Patients)
                 .HasForeignKey(d => d.Idadresses)
+                .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("FK_Patients_Addresses");
 
             entity.HasOne(d => d.IdinsurancePolicyNavigation).WithMany(p => p.Patients)
                 .HasForeignKey(d => d.IdinsurancePolicy)
+                .OnDelete(DeleteBehavior.Cascade)
                 .HasConstraintName("FK_Patients_InsurancePolicies");
         });
 

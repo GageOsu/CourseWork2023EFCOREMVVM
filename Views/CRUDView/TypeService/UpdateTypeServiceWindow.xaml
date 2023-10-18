@@ -1,4 +1,4 @@
-﻿<Window x:Class="CourseWork.Views.CRUDView.TypeService.CreateTypeServicesWindow"
+﻿<Window x:Class="CourseWork.Views.CRUDView.TypeService.UpdateTypeServiceWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:CourseWork.Views.CRUDView.TypeService"
         xmlns:vm="clr-namespace:CourseWork.ViewModels.CRUDViewModel.TypeService"
         mc:Ignorable="d"
-        d:DataContext="{d:DesignInstance vm:CreateTypeServiceViewModel, IsDesignTimeCreatable=True}"
+       d:DataContext="{d:DesignInstance vm:UpdateTypeServiceViewModel, IsDesignTimeCreatable=True}"
         Title="{Binding Title}" Height="250" Width="300">
     <Grid>
         <Grid.RowDefinitions>
@@ -18,12 +18,12 @@
                     VerticalAlignment="Center"
                     Width="200">
             <TextBlock Text="Категория"/>
-            <ComboBox ItemsSource="{Binding Categories}" DisplayMemberPath="Category1" SelectedValue="{Binding Category}"/>
+            <ComboBox ItemsSource="{Binding Categories}" SelectedValue="{Binding TypeServiceSelectetTabItem.IdcategoryNavigation.Category1}"/>
             <TextBlock Text="Название услуги"/>
-            <TextBox Text="{Binding NameService}"/>
+            <TextBox Text="{Binding TypeServiceSelectetTabItem.NameService}"/>
             <TextBlock Text="Цена услуги"/>
-            <TextBox Text="{Binding PriceService}"/>
+            <TextBox Text="{Binding TypeServiceSelectetTabItem.PriceService}"/>
         </StackPanel>
-        <Button Command="{Binding CreateTypeService}" Grid.Row="1" Content="Новая запись"/>
+        <Button Command="{Binding UpdateTypeService}" Grid.Row="1" Content="Новая запись"/>
     </Grid>
 </Window>
